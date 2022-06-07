@@ -1,65 +1,23 @@
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, {useEffect} from 'react';
+import axios from 'axios';
 
-function ChatScreen() {
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
+import MyStack from './src/stack/Stack';
+export const Tab = createBottomTabNavigator();
+
+
+export default function App(props) {
+
+  useEffect(() => {
+    axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com/';
+  }, []);
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>ChatScreen!</Text>
-    </View>
-  );
-}
-
-function GroupScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>GroupScreen!</Text>
-    </View>
-  );
-}
-
-function ContactScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>ContactScreen!</Text>
-    </View>
-  );
-}
-
-function ProfileScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>ProfileScreen!</Text>
-    </View>
-  );
-}
-
-const Tab = createBottomTabNavigator();
-
-export default function App() {
- 
-  return (
-    <NavigationContainer>
-    <Tab.Navigator>
-      <Tab.Screen name="Chat" component={ChatScreen} />
-      <Tab.Screen name="Group" component={GroupScreen} />
-      <Tab.Screen name="Contact" component={ContactScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-    </Tab.Navigator>
-  </NavigationContainer>
+    <MyStack/>
   );
 };
 
-
-const styles = StyleSheet.create({
-  
-});
 
 
