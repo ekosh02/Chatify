@@ -3,19 +3,20 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import { Colors } from './../color/colors';
-import React, { useEffect, useState, useContext } from 'react';
+import { Colors } from '../color/colors';
+import React, { useEffect } from 'react';
 
-export function SplashScreen (props) {
-  
+
+export function SplashScreen(props) {
+
   useEffect(() => {
     navigationFunc()
   }, []);
 
   const navigationFunc = () => {
     setTimeout(() => {
-      props.navigation.replace('BottomNavigation')
-    }, 100);
+      props.navigation.replace('BottomBar')
+    }, 1000);
   }
 
   return (<View style={styles.shell}><View style={styles.container}></View></View>);
