@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import { Colors } from "../color/colors";
 
-const { width, height } = Dimensions.get('screen');
+const { width} = Dimensions.get('screen');
 export function Indicator() {
   return (<View><ActivityIndicator style={{ marginTop: width / 1.5 }}
     color={Colors.mainPurple} /></View>)

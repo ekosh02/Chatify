@@ -7,6 +7,6 @@ import {
 
 export function ProfileScreen(props) {
   return (
-    <View></View>
+    <View><Text>sclmlkProfiel</Text></View>
   );
 }

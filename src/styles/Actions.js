@@ -1,14 +1,27 @@
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import React from 'react';
-import ThreeDots from './../icon/threeDots.svg';
-import Search from './../icon/search.svg';
-import Theme from './../icon/theme.svg';
+import ThreeDots from './../../icon/threeDots.svg';
+import Search from './../../icon/search.svg';
+import Theme from './../../icon/theme.svg';
 
-export function Actions(props) {
+import { useNavigation } from '@react-navigation/native'
+
+export function Actions() {
+
+  const navigation = useNavigation()
+
   return <View style={styles.actions}>
-    <TouchableOpacity><Theme style={styles.paddingAction} /></TouchableOpacity>
-    <TouchableOpacity onPress={() => props?.navigation?.navigate('Search')}><Search style={styles.paddingAction} /></TouchableOpacity>
-    <TouchableOpacity><ThreeDots style={styles.paddingAction} /></TouchableOpacity>
+    <TouchableOpacity>
+      <Theme style={styles.paddingAction} />
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => navigation?.navigate('Search')}>
+      <Search style={styles.paddingAction} />
+    </TouchableOpacity>
+
+    <TouchableOpacity>
+      <ThreeDots style={styles.paddingAction} />
+    </TouchableOpacity>
   </View>;
 }
 
