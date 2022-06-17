@@ -10,6 +10,7 @@ import { getProject } from '../../func/getApi';
 import { styles } from './../../styles/AppBarAndList'
 import Indicator from '../../styles/ActivityIndicator';
 import { DetailsAppBar } from '../../styles/DetailsAppBar';
+import { paramsForUser } from '../../func/paramsForUser'
 
 export function PostScreenDetails(props) {
     useEffect(() => {
@@ -22,18 +23,22 @@ export function PostScreenDetails(props) {
     const item = props.route.params
     const api = 'users/' + item.userId
 
+    console.log('data',data)
+
+    let params = paramsForUser(data)
+
+    console.log('params',params)
+
     return (
         <SafeAreaView>
             {loading ? (
                 <Indicator />
             ) : (
                 <View>
-
                     <DetailsAppBar data={data} />
-
                     <View style={styles.shell}>
                         <Text></Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('UserScreenDetails', params)}>
                             <Text style={styles.nameTextStyle}>{item.title}</Text>
                             <Text style={styles.descriptionTextStyle}>{item.body}</Text>
                         </TouchableOpacity>

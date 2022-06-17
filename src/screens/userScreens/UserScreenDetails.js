@@ -11,7 +11,7 @@ import { Colors } from '../../color/colors';
 import { DetailsAppBar } from '../../styles/DetailsAppBar';
 
 export function UserScreenDetails(props) {
-    
+
     const accountText = 'Account'
     const phoneText = 'Phone'
     const userNameText = 'Username'
@@ -32,7 +32,8 @@ export function UserScreenDetails(props) {
 
     return (
         <SafeAreaView style={styles.container}>
-           <DetailsAppBar data={item}/>
+
+            <DetailsAppBar data={item} />
             <ScrollView>
 
                 <View style={styles.accountContainerStyle}>
@@ -80,7 +81,9 @@ export function UserScreenDetails(props) {
 
             </ScrollView>
 
+
         </SafeAreaView>
+
     );
 }
 export const styles = StyleSheet.create({
@@ -88,8 +91,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     },
-    
-   
     accountContainerStyle: {
         marginHorizontal: 16,
         marginVertical: 20,

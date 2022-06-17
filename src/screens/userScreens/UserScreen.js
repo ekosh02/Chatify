@@ -11,6 +11,7 @@ import { getProject } from '../../func/getApi'
 
 import { Actions } from '../../styles/Actions'
 import { styles } from '../../styles/AppBarAndList'
+import { paramsForUser } from '../../func/paramsForUser'
 
 export function UserScreen(props) {
 
@@ -36,6 +37,7 @@ export function UserScreen(props) {
 }
 
 function chatList(loading, data, props) {
+  console.log('RENDER CHATLIST')
 
   return <View style={styles.listContainer}>
     {loading ? (
@@ -52,22 +54,8 @@ function chatList(loading, data, props) {
 }
 
 const RenderProject = ({ item, props }) => {
-  let params = {
-    id: item.id,
-    name: item.name,
-    username: item.username,
-    phone: item.phone,
-    email: item.email,
-    webside: item.wedside,
-    bs: item.company.bs,
-    catchPhrase: item.company.catchPhrase,
-    companyName: item.company.name,
-    street: item.address.street,
-    suite: item.address.suite,
-    city: item.address.city,
-    zipcode: item.address.zipcode,
 
-  }
+  let params = paramsForUser(item)
 
   return (
     <View style={styles.shell}>
@@ -79,4 +67,5 @@ const RenderProject = ({ item, props }) => {
     </View>
   )
 }
+
 

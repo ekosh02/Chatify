@@ -23,6 +23,7 @@ const MyStack = () => {
 
         <Stack.Screen name="UserScreenDetails" component={UserScreenDetails} />
         <Stack.Screen name="PostScreenDetails" component={PostScreenDetails} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

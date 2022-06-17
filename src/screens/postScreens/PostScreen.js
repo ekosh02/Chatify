@@ -45,6 +45,7 @@ export function PostScreen(props) {
 }
 
 function chatList(loading, data, props) {
+
   return <View style={styles.listContainer}>
     {loading ? (
       <Indicator />

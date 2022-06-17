@@ -1,4 +1,10 @@
-import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  SafeAreaView
+} from 'react-native';
 import React from 'react';
 import ThreeDots from './../../icon/threeDots.svg';
 import Search from './../../icon/search.svg';
@@ -8,9 +14,11 @@ import { useNavigation } from '@react-navigation/native'
 
 export function Actions() {
 
+  console.log('RENDER ACTIONS!!!')
+
   const navigation = useNavigation()
 
-  return <View style={styles.actions}>
+  return <SafeAreaView style={styles.actions}>
     <TouchableOpacity>
       <Theme style={styles.paddingAction} />
     </TouchableOpacity>
@@ -22,7 +30,7 @@ export function Actions() {
     <TouchableOpacity>
       <ThreeDots style={styles.paddingAction} />
     </TouchableOpacity>
-  </View>;
+  </SafeAreaView>;
 }
 
 export const styles = StyleSheet.create({
@@ -31,8 +39,8 @@ export const styles = StyleSheet.create({
   },
   actions: {
     position: 'absolute',
-    right: 3,
-    top: 64,
+    right: 13,
+    top: 13,
     flexDirection: 'row',
     paddingVertical: 5,
     paddingHorizontal: 13,

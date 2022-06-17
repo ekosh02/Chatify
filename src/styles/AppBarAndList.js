@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   listContainer: {
-    height: "81%",
+    height: "86%",
     backgroundColor: "white",
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
