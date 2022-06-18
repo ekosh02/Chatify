@@ -7,7 +7,7 @@ import { BottomBar } from './BottomBar'
 import { Search } from '../screens/Search'
 
 import { UserScreenDetails } from './../screens/userScreens/UserScreenDetails'
-import { PostScreenDetails } from './../screens/postScreens/PostScreenDetails'
+import { PostScreenDetails }  from './../screens/postScreens/PostScreenDetails'
 
 const Stack = createStackNavigator();
 
@@ -23,6 +23,7 @@ const MyStack = () => {
 
         <Stack.Screen name="UserScreenDetails" component={UserScreenDetails} />
         <Stack.Screen name="PostScreenDetails" component={PostScreenDetails} />
+     
         
       </Stack.Navigator>
     </NavigationContainer>

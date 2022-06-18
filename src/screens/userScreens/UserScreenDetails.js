@@ -30,6 +30,8 @@ export function UserScreenDetails(props) {
 
     const item = props.route.params
 
+    console.log('Render UserScreenDetails')
+
     return (
         <SafeAreaView style={styles.container}>
 

@@ -13,9 +13,6 @@ import { DetailsAppBar } from '../../styles/DetailsAppBar';
 import { paramsForUser } from '../../func/paramsForUser'
 
 export function PostScreenDetails(props) {
-    useEffect(() => {
-        getProject(setData, setLoading, api)
-    }, []);
 
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState(null)
@@ -23,11 +20,11 @@ export function PostScreenDetails(props) {
     const item = props.route.params
     const api = 'users/' + item.userId
 
-    console.log('data',data)
+    useEffect(() => {
+        getProject(setData, setLoading, api)
+    }, []);
 
     let params = paramsForUser(data)
-
-    console.log('params',params)
 
     return (
         <SafeAreaView>

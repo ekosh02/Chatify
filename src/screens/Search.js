@@ -11,6 +11,9 @@ import ArrowBack from './../../icon/arrowBack.svg'
 
 
 export function Search(props) {
+
+    console.log('Render Search')
+
     return (
         <SafeAreaView style={styles.container}>
 

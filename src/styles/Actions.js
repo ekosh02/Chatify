@@ -5,16 +5,15 @@ import {
   Text,
   SafeAreaView
 } from 'react-native';
-import React from 'react';
+import React, { memo } from 'react'
+
 import ThreeDots from './../../icon/threeDots.svg';
 import Search from './../../icon/search.svg';
 import Theme from './../../icon/theme.svg';
 
 import { useNavigation } from '@react-navigation/native'
 
-export function Actions() {
-
-  console.log('RENDER ACTIONS!!!')
+function Actions() {
 
   const navigation = useNavigation()
 
@@ -46,3 +45,5 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 13,
   },
 })
+
+export default memo(Actions);
