@@ -1,6 +1,4 @@
-import {
-  View,
-} from 'react-native'
+import { View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 import { getProject } from '../../func/getApi'
@@ -30,7 +28,6 @@ export function UserScreen(props) {
 
     </View>
   );
-
 }
 
 

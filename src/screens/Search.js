@@ -6,13 +6,11 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native'
-import { Colors } from "../color/colors";
+import { Colors } from "../styles/colors";
 import ArrowBack from './../../icon/arrowBack.svg'
 
 
 export function Search(props) {
-
-    console.log('Render Search')
 
     return (
         <SafeAreaView style={styles.container}>

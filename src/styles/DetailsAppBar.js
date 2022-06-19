@@ -6,7 +6,7 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-import { Colors } from '../color/colors';
+import { Colors } from './colors';
 import ArrowBack from './../../icon/arrowBack';
 import ThreeDotsBlackPurple from './../../icon/threeDotsBlackPurple.svg';
 

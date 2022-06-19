@@ -3,7 +3,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import { Colors } from '../color/colors';
+import { Colors } from '../styles/colors';
 import React, { useEffect } from 'react';
 
 

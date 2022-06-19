@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   actions: {
     position: 'absolute',
     right: 13,
-    top: 13,
+    top: '4%',
     flexDirection: 'row',
     paddingVertical: 5,
     paddingHorizontal: 13,

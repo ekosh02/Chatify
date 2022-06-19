@@ -7,7 +7,7 @@ import {
     ScrollView,
 } from 'react-native';
 
-import { Colors } from '../../color/colors';
+import { Colors } from '../../styles/colors';
 import { DetailsAppBar } from '../../styles/DetailsAppBar';
 
 export function UserScreenDetails(props) {
@@ -29,8 +29,6 @@ export function UserScreenDetails(props) {
     const catchPhraseText = 'Catch phrase'
 
     const item = props.route.params
-
-    console.log('Render UserScreenDetails')
 
     return (
         <SafeAreaView style={styles.container}>
@@ -82,7 +80,6 @@ export function UserScreenDetails(props) {
                 </View>
 
             </ScrollView>
-
 
         </SafeAreaView>
 

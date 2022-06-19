@@ -4,7 +4,7 @@ import {
   ActivityIndicator,
   Dimensions,
 } from 'react-native'
-import { Colors } from "../color/colors";
+import { Colors } from "./colors";
 
 const { width} = Dimensions.get('screen');
 export function Indicator() {

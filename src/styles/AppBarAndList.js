@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../color/colors';
+import { Colors } from './colors';
 
 
 export const styles = StyleSheet.create({
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   listContainer: {
-    height: "86%",
+    height: "88%",
     backgroundColor: "white",
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,

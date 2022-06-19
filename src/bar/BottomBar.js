@@ -1,18 +1,18 @@
-import React from 'react';
-import { UserScreen } from '../screens/userScreens/UserScreen';
-import { PostScreen } from '../screens/postScreens/PostScreen';
-import { ContactScreen } from '../screens/ContactScreen';
-import { ProfileScreen } from '../screens/ProfileScreen';
+import React from 'react'
+import { UserScreen } from '../screens/userScreens/UserScreen'
+import { PostScreen } from '../screens/postScreens/PostScreen'
+import { ContactScreen } from '../screens/ContactScreen'
+import { ProfileScreen } from '../screens/profileScreens/ProfileScreen'
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import ChatIcon from './../../icon/bottomIcon/chat.svg'
 import GroupIcon from './../../icon/bottomIcon/group.svg'
 import ContactIcon from './../../icon/bottomIcon/contact.svg'
 
-import { Colors } from '../color/colors';
+import { Colors } from '../styles/colors'
 
-export const Tab = createBottomTabNavigator();
+export const Tab = createBottomTabNavigator()
 
 export const BottomBar = (props) => {
   const userText = "Users"
@@ -32,7 +32,6 @@ export const BottomBar = (props) => {
         tabBarIcon: ({ focused }) => (
           <ChatIcon stroke={focused ? Colors.mainPurple : Colors.whiteGray} />
         ),
-
 
       }} />
       <Tab.Screen name={postText} component={PostScreen} options={{
