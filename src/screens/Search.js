@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     textInputContainer: {
-        top: 64,
+        top: 20,
         position: 'absolute',
         right: 16,
         borderRadius: 10,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
     arrowBackStyle: {
         position: 'absolute',
-        top: 69,
+        top: 24,
         left: 16,
     }
 

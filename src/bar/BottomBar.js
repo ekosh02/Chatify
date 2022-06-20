@@ -1,8 +1,7 @@
 import React from 'react'
 import { UserScreen } from '../screens/userScreens/UserScreen'
 import { PostScreen } from '../screens/postScreens/PostScreen'
-import { ContactScreen } from '../screens/ContactScreen'
-import { ProfileScreen } from '../screens/profileScreens/ProfileScreen'
+import { ContactScreen } from '../screens/AlbumsScreens/AlbumsScreen'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -45,11 +44,7 @@ export const BottomBar = (props) => {
           <ContactIcon stroke={focused ? Colors.mainPurple : Colors.whiteGray} />
         ),
       }} />
-      <Tab.Screen name={profileuserText} component={ProfileScreen} options={{
-        tabBarIcon: ({ focused }) => (
-          <ContactIcon stroke={focused ? Colors.mainPurple : Colors.whiteGray} />
-        ),
-      }} />
+
     </Tab.Navigator>
   );
 };

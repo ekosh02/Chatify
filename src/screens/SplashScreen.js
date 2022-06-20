@@ -16,7 +16,7 @@ export function SplashScreen(props) {
   const navigationFunc = () => {
     setTimeout(() => {
       props.navigation.replace('BottomBar')
-    }, 1000);
+    }, 500);
   }
 
   return (<View style={styles.shell}><View style={styles.container}></View></View>);
