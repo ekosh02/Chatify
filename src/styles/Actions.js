@@ -13,7 +13,7 @@ import Theme from './../../icon/theme.svg';
 
 import { useNavigation } from '@react-navigation/native'
 
-function Actions() {
+function Actions(props) {
 
   const navigation = useNavigation()
 
@@ -26,7 +26,7 @@ function Actions() {
       <Search style={styles.paddingAction} />
     </TouchableOpacity>
 
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation?.navigate('SettingScreen')}>
       <ThreeDots style={styles.paddingAction} />
     </TouchableOpacity>
   </SafeAreaView>;

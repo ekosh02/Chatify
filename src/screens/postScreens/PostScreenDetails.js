@@ -43,5 +43,6 @@ export function PostScreenDetails(props) {
                     </View>
                 </View>
             )}
-        </SafeAreaView>)
+        </SafeAreaView>
+    )
 }
