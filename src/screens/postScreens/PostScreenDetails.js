@@ -32,7 +32,7 @@ export function PostScreenDetails(props) {
                 <Indicator />
             ) : (
                 <View>
-                    <DetailsAppBar data={data} />
+                    <DetailsAppBar data={data}/>
                     <View style={styles.shell}>
                         <Text></Text>
                         <TouchableOpacity onPress={() => props.navigation.navigate('UserScreenDetails', params)}>

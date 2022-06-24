@@ -8,6 +8,8 @@ import Actions from '../../styles/Actions';
 
 import {Indicator} from '../../styles/ActivityIndicator';
 
+import {strings} from '../../Localization/Localization';
+
 export function ContactScreen(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -20,7 +22,7 @@ export function ContactScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Actions />
+      <Actions text={strings.albums}/>
       {albumList(loading, data, props)}
     </View>
   );

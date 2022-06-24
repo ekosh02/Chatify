@@ -10,65 +10,38 @@ import Restart from 'react-native-restart';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {strings} from '../Localization/Localization';
 
-import Indicator from './../styles/ActivityIndicator';
-
 export function SettingScreen(props) {
-  useEffect(() => {
-    langOfApp();
-  }, []);
-
-  const [loading, setLoading] = useState(true);
-
-  const langOfApp = async () => {
-    const lang = await getData('lang');
-    if (lang !== null) {
-      strings.setLanguage(lang);
-      console.log('lang if !null', lang);
-      setLoading(false);
-    } else {
-      strings.setLanguage('kz');
-    }
-  };
-
-  const getData = async key => {
-    try {
-      return await AsyncStorage.getItem(key);
-    } catch (error) {
-      console.log('error', error);
-    }
-  };
 
   const Selected = async value => {
     await AsyncStorage.setItem('lang', value);
     Restart.Restart();
   };
 
+  console.log(strings.language)
+  
+
   return (
     <SafeAreaView style={styles.container}>
-      {loading ? (
-        <View>
-          <Indicator />
-        </View>
-      ) : (
         <View style={styles.accountContainerStyle}>
           <Text style={styles.accountTextStyle}>{strings.language}</Text>
 
           <TouchableOpacity onPress={() => Selected('kz')}>
-            <Text style={styles.chindAccountTextStyle}>Каз</Text>
+            <Text style={styles.chindAccountTextStyle}>Қазақша</Text>
             <View style={styles.line} />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => Selected('en')}>
-            <Text style={styles.chindAccountTextStyle}>Англ</Text>
+            <Text style={styles.chindAccountTextStyle}>English</Text>
             <View style={styles.line} />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => Selected('ru')}>
-            <Text style={styles.chindAccountTextStyle}>Русс</Text>
+            <Text style={styles.chindAccountTextStyle}>Русский</Text>
             <View style={styles.line} />
           </TouchableOpacity>
         </View>
-      )}
+
     </SafeAreaView>
   );
 }
+

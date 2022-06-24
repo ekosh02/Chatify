@@ -35,7 +35,7 @@ export function AlbumScreenDetails(props) {
         <Indicator />
       ) : (
         <View>
-          <DetailsAppBar data={data} />
+          <DetailsAppBar data={data}/>
 
           <TouchableOpacity>
             <PhotoList props={props} />

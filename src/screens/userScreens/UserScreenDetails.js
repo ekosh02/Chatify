@@ -7,33 +7,35 @@ import {
     ScrollView,
 } from 'react-native';
 
+import {strings} from './../../Localization/Localization'
+
 import { Colors } from '../../styles/colors';
 import { DetailsAppBar } from '../../styles/DetailsAppBar';
 
 export function UserScreenDetails(props) {
 
-    const accountText = 'Account'
-    const phoneText = 'Phone'
-    const userNameText = 'Username'
-    const emailText = 'Email'
+    const accountText = strings.account;
+    const phoneText = strings.phone
+    const userNameText = strings.userName
+    const emailText = strings.email
 
-    const addressText = 'Address'
-    const streetText = 'Street'
-    const suiteText = 'Suite'
-    const cityText = 'City'
-    const zipcodeText = 'Zipcode'
+    const addressText = strings.adderess
+    const streetText = strings.street
+    const suiteText = strings.suite
+    const cityText = strings.city
+    const zipcodeText = strings.zipcode
 
-    const companyText = 'Company'
-    const companyNameText = 'Name'
-    const bsText = 'Bs'
-    const catchPhraseText = 'Catch phrase'
+    const companyText = strings.compamy
+    const companyNameText = strings.compamy
+    const bsText = strings.bs
+    const catchPhraseText = strings.catchPhrase
 
     const item = props.route.params
 
     return (
         <SafeAreaView style={styles.container}>
 
-            <DetailsAppBar data={item} />
+            <DetailsAppBar data={item}/>
             <ScrollView>
 
                 <View style={styles.accountContainerStyle}>

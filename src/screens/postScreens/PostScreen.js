@@ -13,6 +13,8 @@ import { styles } from './../../styles/AppBarAndList'
 
 import {Indicator} from './../../styles/ActivityIndicator'
 
+import {strings} from '../../Localization/Localization';
+
 export function PostScreen(props) {
 
   const [loading, setLoading] = useState(true)
@@ -26,7 +28,7 @@ export function PostScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Actions />
+     <Actions text={strings.post}/>
       
       {chatList(loading, data, props)}
     </View>

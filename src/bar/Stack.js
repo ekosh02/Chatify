@@ -1,27 +1,27 @@
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 
-import { SplashScreen } from '../screens/SplashScreen'
-import { BottomBar } from './BottomBar'
-import { Search } from '../screens/Search'
-import { SettingScreen } from '../screens/SettingScreen'
-
-
-import { UserScreenDetails } from '../screens/userScreens/UserScreenDetails'
-import { PostScreenDetails }  from '../screens/postScreens/PostScreenDetails'
-import { AlbumScreenDetails } from '../screens/AlbumsScreens/AlbumScreenDetails'
+import {SplashScreen} from '../screens/SplashScreen';
+import {BottomBar} from './BottomBar';
+import {Search} from '../screens/Search';
+import {SettingScreen} from '../screens/SettingScreen';
+import  {Auth} from '../screens/Account/Auth'
+import {Registration} from  '../screens/Account/Registration'
+ 
+import {UserScreenDetails} from '../screens/userScreens/UserScreenDetails';
+import {PostScreenDetails} from '../screens/postScreens/PostScreenDetails';
+import {AlbumScreenDetails} from '../screens/AlbumsScreens/AlbumScreenDetails';
 
 const Stack = createStackNavigator();
-
-
 
 const MyStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false,
-      }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="BottomBar" component={BottomBar} />
         <Stack.Screen name="Search" component={Search} />
@@ -29,16 +29,17 @@ const MyStack = () => {
 
         <Stack.Screen name="UserScreenDetails" component={UserScreenDetails} />
         <Stack.Screen name="PostScreenDetails" component={PostScreenDetails} />
-        <Stack.Screen name="AlbumScreenDetails" component={AlbumScreenDetails} />
+        <Stack.Screen
+          name="AlbumScreenDetails"
+          component={AlbumScreenDetails}
+        />
 
-        
-        
-
-     
+        <Stack.Screen name="Auth" component={Auth} />
+        <Stack.Screen name="Registration" component={Registration} />
         
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default MyStack;
