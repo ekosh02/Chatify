@@ -12,8 +12,6 @@ import {getProject} from '../../func/getApi';
 import Indicator from '../../styles/ActivityIndicator';
 import {DetailsAppBar} from '../../styles/DetailsAppBar';
 
-// import { paramsForUser } from '../../func/paramsForUser'
-
 const {width} = Dimensions.get('screen');
 
 export function AlbumScreenDetails(props) {
@@ -26,8 +24,6 @@ export function AlbumScreenDetails(props) {
   useEffect(() => {
     getProject(setData, setLoading, api);
   }, []);
-
-  // let params = paramsForUser(data)
 
   return (
     <SafeAreaView>

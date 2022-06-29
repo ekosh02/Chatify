@@ -1,129 +1,111 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    StyleSheet,
-    SafeAreaView,
-    ScrollView,
-} from 'react-native';
+import {Text, View, StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 
-import {strings} from './../../Localization/Localization'
+import {strings} from './../../Localization/Localization';
 
-import { Colors } from '../../styles/colors';
-import { DetailsAppBar } from '../../styles/DetailsAppBar';
+import {Colors} from '../../styles/colors';
+import {DetailsAppBar} from '../../styles/DetailsAppBar';
 
 export function UserScreenDetails(props) {
+  
+  const item = props.route.params;
 
-    const accountText = strings.account;
-    const phoneText = strings.phone
-    const userNameText = strings.userName
-    const emailText = strings.email
+  return (
+    <SafeAreaView style={styles.container}>
+      <DetailsAppBar data={item} />
+      <ScrollView>
+        <View style={styles.accountContainerStyle}>
+          <Text style={styles.accountTextStyle}>{strings.account}</Text>
+          <Text style={styles.chindAccountTextStyle}>{item?.phone}</Text>
+          <Text style={styles.bottomTextStyle}>{strings.phone}</Text>
+          <View style={styles.line} />
+          <Text style={styles.chindAccountTextStyle}>{item?.username}</Text>
+          <Text style={styles.bottomTextStyle}>{strings.userName}</Text>
+          <View style={styles.line} />
+          <Text style={styles.chindAccountTextStyle}>{item?.email}</Text>
+          <Text style={styles.bottomTextStyle}>{strings.email}</Text>
+        </View>
 
-    const addressText = strings.adderess
-    const streetText = strings.street
-    const suiteText = strings.suite
-    const cityText = strings.city
-    const zipcodeText = strings.zipcode
+        <View style={styles.lineWeight} />
 
-    const companyText = strings.compamy
-    const companyNameText = strings.compamy
-    const bsText = strings.bs
-    const catchPhraseText = strings.catchPhrase
+        <View style={styles.accountContainerStyle}>
+          <Text style={styles.accountTextStyle}>{strings.adderess}</Text>
+          <Text style={styles.chindAccountTextStyle}>
+            {item?.address?.street}
+          </Text>
+          <Text style={styles.bottomTextStyle}>{strings.street}</Text>
+          <View style={styles.line} />
+          <Text style={styles.chindAccountTextStyle}>
+            {item?.address?.suite}
+          </Text>
+          <Text style={styles.bottomTextStyle}>{strings.suite}</Text>
+          <View style={styles.line} />
+          <Text style={styles.chindAccountTextStyle}>
+            {item?.address?.city}
+          </Text>
+          <Text style={styles.bottomTextStyle}>{strings.city}</Text>
+          <View style={styles.line} />
+          <Text style={styles.chindAccountTextStyle}>
+            {item?.address?.zipcode}
+          </Text>
+          <Text style={styles.bottomTextStyle}>{strings.zipcode}</Text>
+        </View>
 
-    const item = props.route.params
+        <View style={styles.lineWeight} />
 
-    return (
-        <SafeAreaView style={styles.container}>
-
-            <DetailsAppBar data={item}/>
-            <ScrollView>
-
-                <View style={styles.accountContainerStyle}>
-                    <Text style={styles.accountTextStyle}>{accountText}</Text>
-                    <Text style={styles.chindAccountTextStyle}>{item.phone}</Text>
-                    <Text style={styles.bottomTextStyle}>{phoneText}</Text>
-                    <View style={styles.line} />
-                    <Text style={styles.chindAccountTextStyle}>{item.username}</Text>
-                    <Text style={styles.bottomTextStyle}>{userNameText}</Text>
-                    <View style={styles.line} />
-                    <Text style={styles.chindAccountTextStyle}>{item.email}</Text>
-                    <Text style={styles.bottomTextStyle}>{emailText}</Text>
-                </View>
-
-                <View style={styles.lineWeight} />
-
-                <View style={styles.accountContainerStyle}>
-                    <Text style={styles.accountTextStyle}>{addressText}</Text>
-                    <Text style={styles.chindAccountTextStyle}>{item.street}</Text>
-                    <Text style={styles.bottomTextStyle}>{streetText}</Text>
-                    <View style={styles.line} />
-                    <Text style={styles.chindAccountTextStyle}>{item.suite}</Text>
-                    <Text style={styles.bottomTextStyle}>{suiteText}</Text>
-                    <View style={styles.line} />
-                    <Text style={styles.chindAccountTextStyle}>{item.city}</Text>
-                    <Text style={styles.bottomTextStyle}>{cityText}</Text>
-                    <View style={styles.line} />
-                    <Text style={styles.chindAccountTextStyle}>{item.zipcode}</Text>
-                    <Text style={styles.bottomTextStyle}>{zipcodeText}</Text>
-                </View>
-
-                <View style={styles.lineWeight} />
-
-                <View style={styles.accountContainerStyle}>
-                    <Text style={styles.accountTextStyle}>{companyText}</Text>
-                    <Text style={styles.chindAccountTextStyle}>{item.companyName}</Text>
-                    <Text style={styles.bottomTextStyle}>{companyNameText}</Text>
-                    <View style={styles.line} />
-                    <Text style={styles.chindAccountTextStyle}>{item.catchPhrase}</Text>
-                    <Text style={styles.bottomTextStyle}>{catchPhraseText}</Text>
-                    <View style={styles.line} />
-                    <Text style={styles.chindAccountTextStyle}>{item.bs}</Text>
-                    <Text style={styles.bottomTextStyle}>{bsText}</Text>
-                </View>
-
-            </ScrollView>
-
-        </SafeAreaView>
-
-    );
+        <View style={styles.accountContainerStyle}>
+          <Text style={styles.accountTextStyle}>{strings.compamy}</Text>
+          <Text style={styles.chindAccountTextStyle}>
+            {item?.company?.name}
+          </Text>
+          <Text style={styles.bottomTextStyle}>{strings.compamy}</Text>
+          <View style={styles.line} />
+          <Text style={styles.chindAccountTextStyle}>
+            {item?.company?.catchPhrase}
+          </Text>
+          <Text style={styles.bottomTextStyle}>{strings.catchPhrase}</Text>
+          <View style={styles.line} />
+          <Text style={styles.chindAccountTextStyle}>{item?.company?.bs}</Text>
+          <Text style={styles.bottomTextStyle}>{strings.bs}</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    accountContainerStyle: {
-        marginHorizontal: 16,
-        marginVertical: 20,
-    },
-    accountTextStyle: {
-        fontSize: 18,
-        color: Colors.mainPurple,
-        marginVertical: 5,
-    },
-    childAccountContainerStyle: {
-        marginHorizontal: 16,
-    },
-    chindAccountTextStyle: {
-        fontSize: 24,
-        marginVertical: 5,
-        fontWeight: '400',
-        color: Colors.blackText,
-    },
-    line: {
-        borderBottomWidth: 1,
-        marginVertical: 5,
-        borderColor: Colors.whiteGray,
-    },
-    lineWeight: {
-        borderBottomWidth: 16,
-        borderColor: Colors.whiteGray,
-    },
-    bottomTextStyle: {
-        color: Colors.darkGray,
-        fontSize: 16,
-    }
-
-})
-
-
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  accountContainerStyle: {
+    marginHorizontal: 16,
+    marginVertical: 20,
+  },
+  accountTextStyle: {
+    fontSize: 18,
+    color: Colors.mainPurple,
+    marginVertical: 5,
+  },
+  childAccountContainerStyle: {
+    marginHorizontal: 16,
+  },
+  chindAccountTextStyle: {
+    fontSize: 24,
+    marginVertical: 5,
+    fontWeight: '400',
+    color: Colors.blackText,
+  },
+  line: {
+    borderBottomWidth: 1,
+    marginVertical: 5,
+    borderColor: Colors.whiteGray,
+  },
+  lineWeight: {
+    borderBottomWidth: 16,
+    borderColor: Colors.whiteGray,
+  },
+  bottomTextStyle: {
+    color: Colors.darkGray,
+    fontSize: 16,
+  },
+});

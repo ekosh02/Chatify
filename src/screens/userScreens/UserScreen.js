@@ -7,9 +7,9 @@ import Actions from '../../styles/Actions';
 import {styles} from '../../styles/AppBarAndList';
 
 import {Indicator} from '../../styles/ActivityIndicator';
-import {paramsForUser} from '../../func/paramsForUser';
 
 import {strings} from '../../Localization/Localization';
+import FlatListComponent from '../../func/FlatList';
 
 export function UserScreen(props) {
   const [loading, setLoading] = useState(true);
@@ -37,6 +37,11 @@ function chatList(loading, data, props) {
         <Indicator />
       ) : (
         <FlatList
+          ListEmptyComponent={
+            <View style={{alignItems: 'center'}}>
+              <Text style={{fontSize: 24}}>Empty</Text>
+            </View>
+          }
           data={data}
           renderItem={({item}) => <RenderProject item={item} props={props} />}
           contentContainerStyle={styles.contentContainerStyle}
@@ -46,12 +51,10 @@ function chatList(loading, data, props) {
   );
 }
 const RenderProject = ({item, props}) => {
-  let params = paramsForUser(item);
-
   return (
     <View style={styles.shell}>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate('UserScreenDetails', params)}>
+        onPress={() => props.navigation.navigate('UserScreenDetails', item)}>
         <Text style={styles.nameTextStyle}>{item.name}</Text>
         <Text style={styles.descriptionTextStyle}>{item.company.bs}</Text>
       </TouchableOpacity>

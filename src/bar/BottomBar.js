@@ -2,7 +2,7 @@ import React from 'react';
 import {UserScreen} from '../screens/userScreens/UserScreen';
 import {PostScreen} from '../screens/postScreens/PostScreen';
 import {ContactScreen} from '../screens/AlbumsScreens/AlbumScreen';
-import {ProfileScreen} from '../screens/profileScreens/ProfileScreen'
+import {ProfileScreen} from '../screens/profileScreens/ProfileScreen';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -13,15 +13,13 @@ import ContactIcon from './../../icon/bottomIcon/contact.svg';
 import {Colors} from '../styles/colors';
 import {View, Dimensions} from 'react-native';
 
-import {strings} from './../Localization/Localization'
-
+import {strings} from './../Localization/Localization';
 
 export const Tab = createBottomTabNavigator();
 
 const {width, height} = Dimensions.get('screen');
 
-export const BottomBar = props => {
-
+export const BottomBar = () => {
   return (
     <View style={{width: width, height: height}}>
       <Tab.Navigator
@@ -62,7 +60,7 @@ export const BottomBar = props => {
             ),
           }}
         />
-         <Tab.Screen
+        <Tab.Screen
           name={strings.prodile}
           component={ProfileScreen}
           options={{

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 export function getProject(setData, setLoading, api) {
+  setLoading(true)
 
   return (
     axios
