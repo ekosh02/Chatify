@@ -21,7 +21,7 @@ const {width, height} = Dimensions.get('screen');
 
 export const BottomBar = () => {
   return (
-    <View style={{width: width, height: height}}>
+   
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
@@ -72,6 +72,6 @@ export const BottomBar = () => {
           }}
         />
       </Tab.Navigator>
-    </View>
+   
   );
 };

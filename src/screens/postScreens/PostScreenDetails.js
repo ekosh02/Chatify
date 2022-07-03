@@ -22,21 +22,6 @@ export function PostScreenDetails(props) {
     getProject(setData, setLoading, api);
   }, []);
 
-  let params = {
-    id: data?.id,
-    name: data?.name,
-    username: data?.username,
-    phone: data?.phone,
-    email: data?.email,
-    webside: data?.wedside,
-    bs: data?.company?.bs,
-    catchPhrase: data?.company?.catchPhrase,
-    companyName: data?.company?.name,
-    street: data?.address?.street,
-    suite: data?.address?.suite,
-    city: data?.address?.city,
-    zipcode: data?.address?.zipcode,
-  };
   return (
     <SafeAreaView>
       {loading ? (
@@ -48,7 +33,7 @@ export function PostScreenDetails(props) {
             <Text></Text>
             <TouchableOpacity
               onPress={() =>
-                props.navigation.navigate('UserScreenDetails', params)
+                props.navigation.navigate('UserScreenDetails', data)
               }>
               <Text style={styles.nameTextStyle}>{item.title}</Text>
               <Text style={styles.descriptionTextStyle}>{item.body}</Text>

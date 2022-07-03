@@ -30,7 +30,7 @@ export function Registration(props) {
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
 
-  const authFunc = async () => {
+  const authReg = async () => {
     let params = {
       firstName: firstName,
       lastName: lastName,
@@ -61,8 +61,11 @@ export function Registration(props) {
       console.log('else params: ', params);
       try {
         const jsonParams = JSON.stringify(params)
+        console.log(jsonParams)
+        console.log(params)
         await AsyncStorage.setItem('UserName', jsonParams);
-        Restart.Restart();
+
+        props.navigation.navigate('BottomBar')
       } catch (error) {
         console.log(error);
       }
@@ -107,7 +110,7 @@ export function Registration(props) {
           placeholder={'password'}></TextInput>
       </View>
 
-      <TouchableOpacity onPress={authFunc}>
+      <TouchableOpacity onPress={authReg}>
         <View style={styles.pressContainer}>
           <Text style={styles.textPress}>Registration</Text>
         </View>

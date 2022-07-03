@@ -16,18 +16,30 @@ export function ProfileScreen(props) {
     getData()
   }, []);
 
-  const [info, setInfo] = useState('')
+  const [data, setData] = useState('')
 
-  console.log(info)
 
   const getData = async () => {
 
     try {
       await AsyncStorage.getItem('UserName').then(result => {
         if(result != null) {
-          setInfo(result)
+          const parse = JSON.parse(result)
+          setData(parse)
+          console.log('token', parse)
+        }else{
+          console.log('token is ', result)
         }
       })
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  const removeData  = async () => {
+    try {
+      await AsyncStorage.clear()
     }
     catch (error) {
       console.log(error)
@@ -36,11 +48,10 @@ export function ProfileScreen(props) {
   return (
     <View style={{flex: 1, backgroundColor: '#f7f7f7'}}>
       <View style={styles.appBar}></View>
-
       <View style={styles.profileContainer}>
         <View style={styles.testCon}></View>
         <View style={styles.profileInfoContainer}>
-          <Text style={styles.profileInfoText}>Admin Admin</Text>
+          <Text style={styles.profileInfoText}>{data.firstName} {data.lastName}</Text>
         </View>
       </View>
       <View style={styles.appBarRadius}></View>
@@ -48,7 +59,7 @@ export function ProfileScreen(props) {
       <View style={styles.listContainer}>
         <TouchableOpacity onPress={() => props.navigation.navigate('Auth')}>
           <View style={styles.listIfnoContainer}>
-            <Text style={styles.listText}>Create accoount</Text>
+            <Text style={styles.listText}>Auth accoount</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -57,9 +68,9 @@ export function ProfileScreen(props) {
             <Text style={styles.listText}>Registration accoount</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={removeData}>
           <View style={styles.listIfnoContainer}>
-            <Text style={styles.listText}>Remove accoount</Text>
+            <Text style={styles.listText}>Exit accoount</Text>
           </View>
         </TouchableOpacity>
       </View>

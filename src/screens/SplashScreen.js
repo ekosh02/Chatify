@@ -6,6 +6,7 @@ import {
 import { Colors } from '../styles/colors';
 import React, { useEffect } from 'react';
 
+import Icon from './../../icon/splash.svg'
 
 export function SplashScreen(props) {
 
@@ -19,7 +20,9 @@ export function SplashScreen(props) {
     }, 500);
   }
 
-  return (<View style={styles.shell}><View style={styles.container}></View></View>);
+  return (<View style={styles.shell}>
+      <Icon width={200} height={200}/>
+    </View>);
 };
 
 const styles = StyleSheet.create({
@@ -27,12 +30,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white'
   },
-  container: {
-    height: 200,
-    width: 200,
-    borderRadius: 100,
-    backgroundColor: Colors.mainPurple,
-  },
+ 
 })

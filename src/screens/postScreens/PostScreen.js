@@ -35,7 +35,7 @@ function chatList(loading, data, props) {
       <View style={styles.shell}>
         <TouchableOpacity
           onPress={() =>
-            props.navigation.navigate('PostScreenDetails', params)
+            props.navigation.navigate('PostScreenDetails', item)
           }>
           <Text style={styles.nameTextStyle} numberOfLines={1}>
             {item.title}
@@ -55,8 +55,8 @@ function chatList(loading, data, props) {
         <Indicator />
       ) : (
         <FlatList
-          maxToRenderPerBatch={1}
-          initialNumToRender={14}
+          maxToRenderPerBatch={15}
+          initialNumToRender={15}
           data={data}
           renderItem={renderProject}
           contentContainerStyle={styles.contentContainerStyle}
