@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
   shell: {
     paddingHorizontal: 20,
-    paddingBottom: 20,
+    marginBottom: 20,
   },
   nameTextStyle: {
     fontSize: 18,

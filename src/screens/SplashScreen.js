@@ -1,29 +1,28 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-} from 'react-native';
-import { Colors } from '../styles/colors';
-import React, { useEffect } from 'react';
+import {Text, View, StyleSheet} from 'react-native';
+import {Colors} from '../styles/colors';
+import React, {useContext, useEffect} from 'react';
 
-import Icon from './../../icon/splash.svg'
+import Icon from './../../icon/splash.svg';
 
 export function SplashScreen(props) {
+  console.log('REDNER SplashScreen')
 
   useEffect(() => {
-    navigationFunc()
+    navigationFunc();
   }, []);
 
-  const navigationFunc = () => {
+  const navigationFunc = async () => {
     setTimeout(() => {
-      props.navigation.replace('BottomBar')
+      props.navigation.replace('BottomBar');
     }, 500);
-  }
+  };
 
-  return (<View style={styles.shell}>
-      <Icon width={200} height={200}/>
-    </View>);
-};
+  return (
+    <View style={styles.shell}>
+      <Icon width={200} height={200} />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   shell: {
@@ -31,5 +30,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
- 
-})
+});

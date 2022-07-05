@@ -5,6 +5,8 @@ import MyStack from './src/bar/Stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {strings} from './src/Localization/Localization';
 
+import ContextProvider from './src/context/Context'
+
 export default function App() {
   useEffect(() => {
     axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com/';
@@ -25,5 +27,9 @@ export default function App() {
     }
   };
 
-  return <MyStack />;
+  return (
+    <ContextProvider>
+      <MyStack />
+    </ContextProvider>
+  );
 }

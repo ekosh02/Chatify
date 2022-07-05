@@ -1,5 +1,5 @@
 import {View, FlatList, TouchableOpacity, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 import {getProject} from '../../func/getApi';
 
@@ -9,11 +9,12 @@ import {styles} from '../../styles/AppBarAndList';
 import {Indicator} from '../../styles/ActivityIndicator';
 
 import {strings} from '../../Localization/Localization';
-import FlatListComponent from '../../func/FlatList';
 
 export function UserScreen(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+
+  console.log('RENDER USER SCREEN');
 
   const api = 'users';
 
@@ -31,6 +32,20 @@ export function UserScreen(props) {
 }
 
 function chatList(loading, data, props) {
+
+  const renderProject = useCallback(
+    ({item}) => (
+      <View style={styles.shell}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate('UserScreenDetails', item)}>
+          <Text style={styles.nameTextStyle}>{item.name}</Text>
+          <Text style={styles.descriptionTextStyle}>{item.company.bs}</Text>
+        </TouchableOpacity>
+      </View>
+    ),
+    [],
+  );
+
   return (
     <View style={styles.listContainer}>
       {loading ? (
@@ -43,21 +58,12 @@ function chatList(loading, data, props) {
             </View>
           }
           data={data}
-          renderItem={({item}) => <RenderProject item={item} props={props} />}
+          maxToRenderPerBatch={15}
+          initialNumToRender={15}
+          renderItem={renderProject}
           contentContainerStyle={styles.contentContainerStyle}
         />
       )}
     </View>
   );
 }
-const RenderProject = ({item, props}) => {
-  return (
-    <View style={styles.shell}>
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate('UserScreenDetails', item)}>
-        <Text style={styles.nameTextStyle}>{item.name}</Text>
-        <Text style={styles.descriptionTextStyle}>{item.company.bs}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};

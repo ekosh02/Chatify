@@ -5,53 +5,38 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Colors} from '../../styles/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Restart from 'react-native-restart';
+import {GlobalContext} from '../../context/Context';
 
 const {width} = Dimensions.get('screen');
 
 export function ProfileScreen(props) {
-  useEffect(() => {
-    getData()
-  }, []);
+  useEffect(() => {}, []);
 
-  const [data, setData] = useState('')
+  const {token} = useContext(GlobalContext);
 
-
-  const getData = async () => {
-
+    console.log(token)
+  const removeData = async () => {
     try {
-      await AsyncStorage.getItem('UserName').then(result => {
-        if(result != null) {
-          const parse = JSON.parse(result)
-          setData(parse)
-          console.log('token', parse)
-        }else{
-          console.log('token is ', result)
-        }
-      })
+      await AsyncStorage.clear();
+      Restart.Restart();
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {
-      console.log(error)
-    }
-  }
-
-  const removeData  = async () => {
-    try {
-      await AsyncStorage.clear()
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
+  };
   return (
     <View style={{flex: 1, backgroundColor: '#f7f7f7'}}>
       <View style={styles.appBar}></View>
       <View style={styles.profileContainer}>
         <View style={styles.testCon}></View>
         <View style={styles.profileInfoContainer}>
-          <Text style={styles.profileInfoText}>{data.firstName} {data.lastName}</Text>
+          <Text style={styles.profileInfoText}>
+            Тут должно быть Имя
+            {token?.lastName}
+          </Text>
         </View>
       </View>
       <View style={styles.appBarRadius}></View>

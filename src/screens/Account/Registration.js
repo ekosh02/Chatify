@@ -63,9 +63,9 @@ export function Registration(props) {
         const jsonParams = JSON.stringify(params)
         console.log(jsonParams)
         console.log(params)
-        await AsyncStorage.setItem('UserName', jsonParams);
+        await AsyncStorage.setItem('token', jsonParams);
 
-        props.navigation.navigate('BottomBar')
+        Restart.Restart()
       } catch (error) {
         console.log(error);
       }

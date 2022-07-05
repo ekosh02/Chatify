@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,10 @@ import {
 
 import ArrowBack from './../../../icon/arrowBack';
 import {styles} from '../../styles/acoountStyles';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GlobalContext } from '../../context/Context';
+import Restart from 'react-native-restart';
 
 const text = 'Auth';
 
@@ -25,7 +29,10 @@ export function Auth(props) {
   const [username, setusername] = useState(null);
   const [password, setPassword] = useState(null);
 
-  function authFunc() {
+
+  const {setToken} = useContext(GlobalContext);
+
+  const authFunc = async () => {
     if (password == null || username == null) {
       PopUp('Пароль или логин не может быть пустым');
       console.log('params: ', password, username);
@@ -37,9 +44,19 @@ export function Auth(props) {
         username: username,
         password: password,
       };
-      console.log('params: ', params);
+      console.log('auth params: ', params);
+      await AsyncStorage.getItem('token').then(result => {
+        if (result != null) {
+          const parse = JSON.parse(result);
+          setToken(parse)
+          console.log('res ', parse)
+          
+        } else {
+          console.log('auth is ', result);
+        }
+      });
     }
-  }
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>

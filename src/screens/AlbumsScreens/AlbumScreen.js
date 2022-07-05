@@ -1,6 +1,6 @@
 import {Text, View, FlatList, Image, TouchableOpacity} from 'react-native';
 
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 import {getProject} from '../../func/getApi';
 import {styles} from '../../styles/AppBarAndList';
@@ -22,13 +22,27 @@ export function ContactScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Actions text={strings.albums}/>
+      <Actions text={strings.albums} />
       {albumList(loading, data, props)}
     </View>
   );
 }
 
 function albumList(loading, data, props) {
+  const renderProject = useCallback(
+    ({item}) => (
+      <View style={styles.shell}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate('AlbumScreenDetails', item)}>
+          <Text style={styles.nameTextStyle} numberOfLines={1}>
+            {item.title}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    ),
+    [],
+  );
+
   return (
     <View style={styles.listContainer}>
       {loading ? (
@@ -36,31 +50,13 @@ function albumList(loading, data, props) {
       ) : (
         <FlatList
           data={data}
-          renderItem={({item, index}) => (
-            <RenderProject item={item} props={props} />
-          )}
+          bounces={true}
+          maxToRenderPerBatch={15}
+          initialNumToRender={20}
+          renderItem={renderProject}
           contentContainerStyle={styles.contentContainerStyle}
         />
       )}
     </View>
   );
 }
-
-const RenderProject = ({index, item, props}) => {
-  let params = {
-    id: item.id,
-    title: item.title,
-    userId: item.userId,
-  };
-
-  return (
-    <View style={styles.shell}>
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate('AlbumScreenDetails', params)}>
-        <Text style={styles.nameTextStyle} numberOfLines={1}>
-          {item.title}
-        </Text>
-      </TouchableOpacity>
-    </View>
-  );
-};

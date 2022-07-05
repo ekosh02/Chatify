@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   Text,
   View,
@@ -31,7 +31,7 @@ export function AlbumScreenDetails(props) {
         <Indicator />
       ) : (
         <View>
-          <DetailsAppBar data={data}/>
+          <DetailsAppBar data={data} />
 
           <TouchableOpacity>
             <PhotoList props={props} />
@@ -54,22 +54,7 @@ function PhotoList(props) {
     getProject(setData, setLoading, api);
   }, []);
 
-  return (
-    <View>
-      {loading ? (
-        <Indicator />
-      ) : (
-        <FlatList
-          numColumns={3}
-          data={data}
-          renderItem={({item}) => <RenderProject item={item} />}
-        />
-      )}
-    </View>
-  );
-}
-const RenderProject = ({item}) => {
-  return (
+  const renderProject = useCallback(({item}) => (
     <View>
       <TouchableOpacity>
         <Image
@@ -83,5 +68,21 @@ const RenderProject = ({item}) => {
         />
       </TouchableOpacity>
     </View>
+  ));
+
+  return (
+    <View>
+      {loading ? (
+        <Indicator />
+      ) : (
+        <FlatList
+          numColumns={3}
+          data={data}
+          renderItem={renderProject}
+          maxToRenderPerBatch={9}
+          initialNumToRender={20}
+        />
+      )}
+    </View>
   );
-};
+}
