@@ -1,10 +1,12 @@
-import React, {useContext, useState, createContext} from 'react';
+import React, {useState, createContext} from 'react';
 
 export const GlobalContext = createContext([]);
 
 const ContextProvider = ({children}) => {
-  console.log('REDNDER ContextProvider')
+
   const [token, setToken] = useState(null);
+
+  console.log('RENDER CONTEXT', token)
   return (
     <GlobalContext.Provider
       value={{

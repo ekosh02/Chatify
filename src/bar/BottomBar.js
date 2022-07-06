@@ -23,7 +23,6 @@ const {width, height} = Dimensions.get('screen');
 
 export const BottomBar = () => {
 
-  console.log('RENDER USER BottomBar')
   return (
    
       <Tab.Navigator

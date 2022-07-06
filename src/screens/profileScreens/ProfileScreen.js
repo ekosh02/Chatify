@@ -5,60 +5,67 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-import React, {useContext, useEffect, useState} from 'react';
-import {Colors} from '../../styles/colors';
+import React, { useContext, useEffect, useState } from 'react';
+import { Colors } from '../../styles/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Restart from 'react-native-restart';
-import {GlobalContext} from '../../context/Context';
+import { GlobalContext } from '../../context/Context';
+import Indicator from '../../styles/ActivityIndicator';
 
-const {width} = Dimensions.get('screen');
+const { width , height} = Dimensions.get('screen');
 
 export function ProfileScreen(props) {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
-  const {token} = useContext(GlobalContext);
+  const { token } = useContext(GlobalContext);
 
-    console.log(token)
+  console.log('RENDER PROFILE ', token)
+
+  const [loading, setLoading] = useState(false)
+
   const removeData = async () => {
+    setLoading(true)
     try {
       await AsyncStorage.clear();
+      setLoading(false)
       Restart.Restart();
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   };
   return (
-    <View style={{flex: 1, backgroundColor: '#f7f7f7'}}>
-      <View style={styles.appBar}></View>
-      <View style={styles.profileContainer}>
-        <View style={styles.testCon}></View>
-        <View style={styles.profileInfoContainer}>
-          <Text style={styles.profileInfoText}>
-            Тут должно быть Имя
-            {token?.lastName}
-          </Text>
+      <View>
+      {loading ? (<Indicator />) : (<View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={styles.appBar}></View>
+        <View style={styles.profileContainer}>
+          <View style={styles.testCon}></View>
+          <View style={styles.profileInfoContainer}>
+            <Text style={styles.profileInfoText}>
+              Тут должно быть Имя
+              {token?.lastName}
+            </Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.appBarRadius}></View>
+        <View style={styles.appBarRadius}></View>
 
-      <View style={styles.listContainer}>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Auth')}>
-          <View style={styles.listIfnoContainer}>
-            <Text style={styles.listText}>Auth accoount</Text>
+        {token ? (
+          <View style={styles.logoutContainer}>
+            <TouchableOpacity onPress={removeData}>
+              <Text style={styles.logoutText}>Log out</Text>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate('Registration')}>
-          <View style={styles.listIfnoContainer}>
-            <Text style={styles.listText}>Registration accoount</Text>
+        ) : (
+          <View style={styles.logoutContainer}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('Auth')}>
+              <Text style={styles.logoutText}>Sign in</Text>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={removeData}>
-          <View style={styles.listIfnoContainer}>
-            <Text style={styles.listText}>Exit accoount</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        )}
+        </View>
+        
+        )}
+
     </View>
   );
 }
@@ -72,10 +79,9 @@ export const styles = StyleSheet.create({
   appBarRadius: {
     height: 40,
     top: -20,
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
     backgroundColor: '#f7f7f7',
-    // backgroundColor: 'gray',
   },
   profileContainer: {
     width: width,
@@ -113,5 +119,16 @@ export const styles = StyleSheet.create({
   },
   listText: {
     fontSize: 20,
+  },
+  logoutContainer: {
+    position: 'absolute',
+    top: height-150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: width,
+  },
+  logoutText: {
+    fontSize: 26,
+    color: Colors.mainPurple,
   },
 });

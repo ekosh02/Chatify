@@ -14,7 +14,6 @@ export function UserScreen(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
 
-  console.log('RENDER USER SCREEN');
 
   const api = 'users';
 

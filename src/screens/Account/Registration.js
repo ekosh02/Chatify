@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -9,9 +9,11 @@ import {
 } from 'react-native';
 
 import ArrowBack from './../../../icon/arrowBack';
-import {styles} from '../../styles/acoountStyles';
+import { styles } from '../../styles/acoountStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Restart from 'react-native-restart';
+import { GlobalContext } from '../../context/Context';
+import Indicator from '../../styles/ActivityIndicator';
 
 const text = 'Registration';
 
@@ -24,13 +26,21 @@ export function Registration(props) {
       },
     ]);
 
+  const { setToken } = useContext(GlobalContext);
+
+  
+
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
 
+  const [loading, setLoading] = useState(false)
+
+
   const authReg = async () => {
+    setLoading(true)
     let params = {
       firstName: firstName,
       lastName: lastName,
@@ -48,6 +58,7 @@ export function Registration(props) {
     ) {
       PopUp('Заполнение не может быть пустым');
       console.log('params is null: ', params);
+      setLoading(false)
     } else if (
       firstName.length < 4 ||
       lastName.length < 4 ||
@@ -57,64 +68,79 @@ export function Registration(props) {
     ) {
       PopUp('Пароль или логин не может быть меньше чем 5 символов');
       console.log('len < 4 params: ', params);
-    } else {
-      console.log('else params: ', params);
+      setLoading(false)
+    }
+    else if (password != confirmPassword
+    ) {
+      PopUp('Пароли не совпадают');
+      setLoading(false)
+    }
+    else {
       try {
-        const jsonParams = JSON.stringify(params)
-        console.log(jsonParams)
-        console.log(params)
-        await AsyncStorage.setItem('token', jsonParams);
+        const jsonParams = JSON.stringify(params);
 
-        Restart.Restart()
+        await AsyncStorage.setItem('token', jsonParams);
+        setToken(params)
+        setLoading(false)
+        Restart.Restart();
       } catch (error) {
         console.log(error);
+        setLoading(false)
       }
     }
   };
 
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.appBar}>
-        <TouchableOpacity onPress={() => props.navigation?.goBack()}>
-          <View style={styles.arrowBackStyle}>
-            <ArrowBack />
+  return (<SafeAreaView style={{ flex: 1 }}>
+    {loading ?
+      (
+        <Indicator />
+      ) :
+      (<View>
+        <View style={styles.appBar}>
+          <TouchableOpacity onPress={() => props.navigation?.goBack()}>
+            <View style={styles.arrowBackStyle}>
+              <ArrowBack />
+            </View>
+          </TouchableOpacity>
+          <View style={styles.nameContainerStyle}>
+            <Text style={styles.nameTextStyle} numberOfLines={1}>
+              {text}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.formContainer}>
+          <TextInput
+            onChangeText={text => setFirstName(text)}
+            style={styles.textInput}
+            placeholder={'first name'}></TextInput>
+          <TextInput
+            onChangeText={text => setLastName(text)}
+            style={styles.textInput}
+            placeholder={'last name'}></TextInput>
+          <TextInput
+            onChangeText={text => setUsername(text)}
+            style={styles.textInput}
+            placeholder={'username'}></TextInput>
+          <TextInput
+            onChangeText={text => setPassword(text)}
+            style={styles.textInput}
+            placeholder={'password'}></TextInput>
+          <TextInput
+            onChangeText={text => setConfirmPassword(text)}
+            style={styles.textInput}
+            placeholder={'password'}></TextInput>
+        </View>
+
+        <TouchableOpacity onPress={authReg}>
+          <View style={styles.pressContainer}>
+            <Text style={styles.textPress}>Registration</Text>
           </View>
         </TouchableOpacity>
-        <View style={styles.nameContainerStyle}>
-          <Text style={styles.nameTextStyle} numberOfLines={1}>
-            {text}
-          </Text>
-        </View>
       </View>
+      )
+    }
+  </SafeAreaView>
 
-      <View style={styles.formContainer}>
-        <TextInput
-          onChangeText={(text) => setFirstName(text)}
-          style={styles.textInput}
-          placeholder={'first name'}></TextInput>
-        <TextInput
-          onChangeText={(text) => setLastName(text)}
-          style={styles.textInput}
-          placeholder={'last name'}></TextInput>
-        <TextInput
-          onChangeText={(text) => setUsername(text)}
-          style={styles.textInput}
-          placeholder={'username'}></TextInput>
-        <TextInput
-          onChangeText={(text) => setPassword(text)}
-          style={styles.textInput}
-          placeholder={'password'}></TextInput>
-        <TextInput
-          onChangeText={(text ) => setConfirmPassword(text)}
-          style={styles.textInput}
-          placeholder={'password'}></TextInput>
-      </View>
-
-      <TouchableOpacity onPress={authReg}>
-        <View style={styles.pressContainer}>
-          <Text style={styles.textPress}>Registration</Text>
-        </View>
-      </TouchableOpacity>
-    </SafeAreaView>
   );
 }

@@ -3,13 +3,28 @@ import {Colors} from '../styles/colors';
 import React, {useContext, useEffect} from 'react';
 
 import Icon from './../../icon/splash.svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GlobalContext } from '../context/Context';
 
 export function SplashScreen(props) {
-  console.log('REDNER SplashScreen')
 
   useEffect(() => {
-    navigationFunc();
+    navigationFunc()
+    getUser()
   }, []);
+
+  const { setToken } = useContext(GlobalContext)
+
+  const getUser = async () => {
+    try {
+      const userData = JSON.parse(await AsyncStorage.getItem('token'))
+      console.log('token', userData)
+    
+    } catch (error) {
+      console.log(error);
+
+    }
+  };
 
   const navigationFunc = async () => {
     setTimeout(() => {

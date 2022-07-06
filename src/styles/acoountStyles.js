@@ -42,7 +42,9 @@ export const styles = StyleSheet.create({
   },
   formContainer: {
     backgroundColor: 'white',
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    marginBottom: 30,
     marginHorizontal: 16,
     marginTop: 30,
     borderRadius: 20,
@@ -56,9 +58,8 @@ export const styles = StyleSheet.create({
   },
   pressContainer: {
     backgroundColor: 'white',
-    padding: 16,
+    paddingVertical: 20,
     marginHorizontal: 16,
-    marginTop: 30,
     borderRadius: 20,
     backgroundColor: Colors.mainPurple,
     justifyContent: 'center',
@@ -67,6 +68,17 @@ export const styles = StyleSheet.create({
   textPress: {
     color: 'white',
     fontSize: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pressContainer2: {
+    top: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textPress2: {
+    color: Colors.mainPurple,
+    fontSize: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
