@@ -49,7 +49,6 @@ export const styles = StyleSheet.create({
   actions: {
     position: 'absolute',
     top: '4%',
-
     paddingVertical: 5,
     paddingHorizontal: 13,
     width: width,

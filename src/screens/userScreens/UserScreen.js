@@ -14,7 +14,6 @@ export function UserScreen(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
 
-
   const api = 'users';
 
   useEffect(() => {
@@ -31,7 +30,6 @@ export function UserScreen(props) {
 }
 
 function chatList(loading, data, props) {
-
   const renderProject = useCallback(
     ({item}) => (
       <View style={styles.shell}>

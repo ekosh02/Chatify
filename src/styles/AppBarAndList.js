@@ -1,16 +1,15 @@
-import { StyleSheet } from 'react-native';
-import { Colors } from './colors';
-
+import {StyleSheet} from 'react-native';
+import {Colors} from './colors';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.mainPurple,
     flex: 1,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   listContainer: {
-    height: "88%",
-    backgroundColor: "white",
+    height: '88%',
+    backgroundColor: 'white',
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },

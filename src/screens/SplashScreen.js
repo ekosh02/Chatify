@@ -19,6 +19,7 @@ export function SplashScreen(props) {
     try {
       const userData = JSON.parse(await AsyncStorage.getItem('token'))
       console.log('token', userData)
+      setToken(userData)
     
     } catch (error) {
       console.log(error);

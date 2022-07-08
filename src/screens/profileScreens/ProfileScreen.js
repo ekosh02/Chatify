@@ -4,50 +4,65 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  ScrollView,
 } from 'react-native';
-import React, { useContext, useEffect, useState } from 'react';
-import { Colors } from '../../styles/colors';
+import React, {useContext, useEffect, useState} from 'react';
+import {Colors} from '../../styles/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Restart from 'react-native-restart';
-import { GlobalContext } from '../../context/Context';
+import {GlobalContext} from '../../context/Context';
 import Indicator from '../../styles/ActivityIndicator';
+import {strings} from '../../Localization/Localization';
+import Actions from '../../styles/Actions';
 
-const { width , height} = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 
 export function ProfileScreen(props) {
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
-  const { token } = useContext(GlobalContext);
+  const {token} = useContext(GlobalContext);
 
-  console.log('RENDER PROFILE ', token)
-
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const removeData = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       await AsyncStorage.clear();
-      setLoading(false)
+      setLoading(false);
       Restart.Restart();
     } catch (error) {
       console.log(error);
-      setLoading(false)
+      setLoading(false);
     }
   };
   return (
+    <View style={styles.container}>
+      <Actions text={strings.prodile} />
+
       <View>
-      {loading ? (<Indicator />) : (<View style={{ flex: 1, backgroundColor: 'white' }}>
-        <View style={styles.appBar}></View>
-        <View style={styles.profileContainer}>
-          <View style={styles.testCon}></View>
-          <View style={styles.profileInfoContainer}>
-            <Text style={styles.profileInfoText}>
-              Тут должно быть Имя
-              {token?.lastName}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.appBarRadius}></View>
+        {token ? (
+          <ScrollView style={styles.scroll}>
+            <View style={styles.accountContainerStyle}>
+              <Text style={styles.chindAccountTextStyle}>
+                {token.firstName}
+              </Text>
+              <Text style={styles.bottomTextStyle}>Name</Text>
+              <View style={styles.line} />
+              <Text style={styles.chindAccountTextStyle}>{token.lastName}</Text>
+              <Text style={styles.bottomTextStyle}>Surname</Text>
+              <View style={styles.line} />
+              <Text style={styles.chindAccountTextStyle}>{token.username}</Text>
+              <Text style={styles.bottomTextStyle}>username</Text>
+              <View style={styles.line} />
+            </View>
+          </ScrollView>
+        ) : (
+          <ScrollView style={styles.scroll}>
+            <View>
+              <Text>Guest</Text>
+            </View>
+          </ScrollView>
+        )}
 
         {token ? (
           <View style={styles.logoutContainer}>
@@ -62,48 +77,36 @@ export function ProfileScreen(props) {
             </TouchableOpacity>
           </View>
         )}
-        </View>
-        
-        )}
-
+      </View>
     </View>
   );
 }
 
 export const styles = StyleSheet.create({
-  appBar: {
+  container: {
     backgroundColor: Colors.mainPurple,
-    width: width,
-    height: 200,
+    flex: 1,
+    justifyContent: 'flex-end',
   },
-  appBarRadius: {
-    height: 40,
-    top: -20,
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-    backgroundColor: '#f7f7f7',
+  scroll: {
+    height: '88%',
+    backgroundColor: 'white',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    paddingTop: 0,
   },
   profileContainer: {
-    width: width,
-    height: 200,
     position: 'absolute',
-  },
-  testCon: {
-    left: '10%',
     top: '40%',
-    height: 80,
-    width: 80,
-    borderRadius: 40,
-    backgroundColor: Colors.secondPurple,
+    left: 20,
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  profileInfoContainer: {
-    position: 'absolute',
-    right: '20%',
-    top: '50%',
-  },
+
   profileInfoText: {
     color: 'white',
-    fontSize: 24,
+    fontSize: 30,
   },
   listContainer: {
     backgroundColor: 'white',
@@ -122,7 +125,7 @@ export const styles = StyleSheet.create({
   },
   logoutContainer: {
     position: 'absolute',
-    top: height-150,
+    top: '90%',
     alignItems: 'center',
     justifyContent: 'center',
     width: width,
@@ -130,5 +133,40 @@ export const styles = StyleSheet.create({
   logoutText: {
     fontSize: 26,
     color: Colors.mainPurple,
+  },
+  textPos: {
+    position: 'absolute',
+    top: '40%',
+    left: 20,
+  },
+  accountContainerStyle: {
+    marginHorizontal: 16,
+    marginVertical: 20,
+  },
+  accountTextStyle: {
+    fontSize: 18,
+    color: Colors.mainPurple,
+    marginVertical: 5,
+  },
+  childAccountContainerStyle: {
+    marginHorizontal: 16,
+  },
+  chindAccountTextStyle: {
+    fontSize: 24,
+    marginVertical: 5,
+    fontWeight: '400',
+    color: Colors.blackText,
+  },
+
+  line: {
+    marginTop: 5,
+    borderBottomWidth: 1,
+    marginBottom: 5,
+    borderColor: Colors.whiteGray,
+  },
+
+  bottomTextStyle: {
+    color: Colors.darkGray,
+    fontSize: 16,
   },
 });

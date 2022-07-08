@@ -3,6 +3,8 @@ import {Colors} from '../styles/colors';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+import ArrowBack from './../../icon/arrowBack.svg'
+
 import {styles} from '../../src/screens/userScreens/UserScreenDetails';
 
 import Restart from 'react-native-restart';
@@ -22,6 +24,7 @@ export function SettingScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View><TouchableOpacity><ArrowBack/></TouchableOpacity></View>
         <View style={styles.accountContainerStyle}>
           <Text style={styles.accountTextStyle}>{strings.language}</Text>
 
