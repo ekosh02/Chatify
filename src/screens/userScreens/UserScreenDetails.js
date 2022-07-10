@@ -79,7 +79,8 @@ export const styles = StyleSheet.create({
   },
   accountContainerStyle: {
     marginHorizontal: 16,
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom: 10,
   },
   accountTextStyle: {
     fontSize: 18,
@@ -91,7 +92,7 @@ export const styles = StyleSheet.create({
   },
   chindAccountTextStyle: {
     fontSize: 24,
-    marginVertical: 5,
+    marginVertical: 3,
     fontWeight: '400',
     color: Colors.blackText,
   },

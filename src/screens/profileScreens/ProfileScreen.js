@@ -6,21 +6,20 @@ import {
   Dimensions,
   ScrollView,
 } from 'react-native';
-import React, {useContext, useEffect, useState} from 'react';
-import {Colors} from '../../styles/colors';
+import React, { useContext, useEffect, useState } from 'react';
+import { Colors } from '../../styles/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Restart from 'react-native-restart';
-import {GlobalContext} from '../../context/Context';
-import Indicator from '../../styles/ActivityIndicator';
-import {strings} from '../../Localization/Localization';
+import { GlobalContext } from '../../context/Context';
+import { strings } from '../../Localization/Localization';
 import Actions from '../../styles/Actions';
 
-const {width, height} = Dimensions.get('screen');
+const { width, height } = Dimensions.get('screen');
 
 export function ProfileScreen(props) {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
-  const {token} = useContext(GlobalContext);
+  const { token } = useContext(GlobalContext);
 
   const [loading, setLoading] = useState(false);
 
@@ -46,20 +45,24 @@ export function ProfileScreen(props) {
               <Text style={styles.chindAccountTextStyle}>
                 {token.firstName}
               </Text>
-              <Text style={styles.bottomTextStyle}>Name</Text>
+              <Text style={styles.bottomTextStyle}>{strings.firstName}</Text>
               <View style={styles.line} />
               <Text style={styles.chindAccountTextStyle}>{token.lastName}</Text>
-              <Text style={styles.bottomTextStyle}>Surname</Text>
+              <Text style={styles.bottomTextStyle}>{strings.lastName}</Text>
               <View style={styles.line} />
               <Text style={styles.chindAccountTextStyle}>{token.username}</Text>
-              <Text style={styles.bottomTextStyle}>username</Text>
+              <Text style={styles.bottomTextStyle}>{strings.username}</Text>
               <View style={styles.line} />
             </View>
           </ScrollView>
         ) : (
           <ScrollView style={styles.scroll}>
-            <View>
-              <Text>Guest</Text>
+
+            <View style={styles.accountContainerStyle}>
+
+              <Text style={styles.bottomTextStyle}>{strings.guest}</Text>
+              <View style={styles.line} />
+
             </View>
           </ScrollView>
         )}
@@ -67,13 +70,13 @@ export function ProfileScreen(props) {
         {token ? (
           <View style={styles.logoutContainer}>
             <TouchableOpacity onPress={removeData}>
-              <Text style={styles.logoutText}>Log out</Text>
+              <Text style={styles.logoutText}>{strings.logOut}</Text>
             </TouchableOpacity>
           </View>
         ) : (
           <View style={styles.logoutContainer}>
             <TouchableOpacity onPress={() => props.navigation.navigate('Auth')}>
-              <Text style={styles.logoutText}>Sign in</Text>
+              <Text style={styles.logoutText}>{strings.signIn}</Text>
             </TouchableOpacity>
           </View>
         )}

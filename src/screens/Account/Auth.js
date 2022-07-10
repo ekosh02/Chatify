@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TextInput,
   Alert,
+  ScrollView,
 } from 'react-native';
 
 import ArrowBack from './../../../icon/arrowBack';
@@ -15,8 +16,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GlobalContext} from '../../context/Context';
 import Restart from 'react-native-restart';
 import Indicator from '../../styles/ActivityIndicator';
+import  { strings }  from './../../Localization/Localization'
 
-const text = 'Auth';
+
 
 export function Auth(props) {
   const PopUp = msg =>
@@ -56,7 +58,7 @@ export function Auth(props) {
           console.log('auth ', parse);
           setToken(parse);
           setLoading(false);
-          Restart.Restart();
+          props.navigation.replace('BottomBar');
         } else {
           console.log('auth is ', result);
           setLoading(false);
@@ -79,34 +81,41 @@ export function Auth(props) {
             </TouchableOpacity>
             <View style={styles.nameContainerStyle}>
               <Text style={styles.nameTextStyle} numberOfLines={1}>
-                {text}
+              {strings.auth}
               </Text>
             </View>
           </View>
-
+          <ScrollView>
           <View style={styles.formContainer}>
             <TextInput
               onChangeText={setusername}
               style={styles.textInput}
-              placeholder={'username'}></TextInput>
+              placeholder={strings.username}></TextInput>
             <TextInput
               onChangeText={setPassword}
               style={styles.textInput}
-              placeholder={'password'}></TextInput>
+              placeholder={strings.password}
+              
+              ></TextInput>
           </View>
 
           <TouchableOpacity onPress={authFunc}>
             <View style={styles.pressContainer}>
-              <Text style={styles.textPress}>Auth</Text>
+              <Text style={styles.textPress}>{strings.auth}</Text>
             </View>
           </TouchableOpacity>
+
 
           <TouchableOpacity
             onPress={() => props.navigation.navigate('Registration')}>
             <View style={styles.pressContainer2}>
-              <Text style={styles.textPress2}>If you don't have a account</Text>
+              <Text style={styles.textPress2}>{strings.ifNUllAcc}</Text>
             </View>
           </TouchableOpacity>
+
+          
+
+        </ScrollView>
         </View>
       )}
     </SafeAreaView>

@@ -55,6 +55,7 @@ export const styles = StyleSheet.create({
     height: 40,
     borderRadius: 10,
     backgroundColor: '#f7f7f7',
+
   },
   pressContainer: {
     backgroundColor: 'white',
@@ -73,6 +74,7 @@ export const styles = StyleSheet.create({
   },
   pressContainer2: {
     top: 30,
+    marginBottom: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -82,4 +84,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  marginKeyboard: {
+    marginBottom: '30',
+  }
 });

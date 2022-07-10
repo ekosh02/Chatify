@@ -20,6 +20,21 @@ export let strings = new LocalizedStrings({
     companyName: 'Name',
     bs: 'Bs',
     catchPhrase: 'Catch phrase',
+
+    guest: 'Guest',
+    signIn: 'Sign In',
+    logOut: 'LogOut',
+    username: 'Username',
+    password: 'Password',
+    auth: 'Auth',
+
+    firstName: 'First name',
+    lastName: 'Last name',
+    confirmPassword: 'Confirm password',
+    registration: 'Registration',
+
+    ifNUllAcc: 'If you don\'t have an account'
+
   },
   kz: {
     language: 'Тіл',
@@ -40,6 +55,21 @@ export let strings = new LocalizedStrings({
     companyName: 'Компания аты',
     bs: 'БС',
     catchPhrase: 'Фразаны ұстау',
+
+
+    guest: 'Қонақ',
+    signIn: 'Кіру',
+    logOut: 'Шығу',
+    username: 'Логин',
+    password: 'Құпия сөз',
+    auth: 'Авторизация',
+
+    firstName: 'Аты',
+    lastName: 'Тегі',
+    confirmPassword: 'Кұпия сөзді қайталау',
+    registration: 'Регистрация',
+
+    ifNUllAcc: 'Егер сізде аккаунт болмаса'
   },
   ru: {
     language: 'Язык',
@@ -60,5 +90,19 @@ export let strings = new LocalizedStrings({
     companyName: 'Имя компаний',
     bs: 'БС',
     catchPhrase: 'Поймать фразу',
+
+    guest: 'Гость',
+    signIn: 'Войти',
+    logOut: 'Выйти',
+    username: 'Логин',
+    password: 'Пароль',
+    auth: 'Авторизация',
+
+    firstName: 'Имя',
+    lastName: 'Фамилия',
+    confirmPassword: 'Повторите пароль',
+    registration: 'Регистрация',
+
+    ifNUllAcc: 'Если у вас нету аккаунтаt'
   },
 });

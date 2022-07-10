@@ -23,6 +23,8 @@
     "react-native": "0.68.2",
     "react-native-axios": "^0.17.1",
     "react-native-gesture-handler": "^2.4.2",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-keyboard-aware-view": "^0.0.14",
     "react-native-localization": "^2.3.1",
     "react-native-paper": "^4.12.1",
     "react-native-restart": "^0.0.24",
