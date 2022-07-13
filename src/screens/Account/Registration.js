@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -9,19 +9,19 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Dimensions,
+  Keyboard,
 } from 'react-native';
 
 import ArrowBack from './../../../icon/arrowBack';
-import { styles } from '../../styles/acoountStyles';
+import {styles} from '../../styles/acoountStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Restart from 'react-native-restart';
-import { GlobalContext } from '../../context/Context';
+import {GlobalContext} from '../../context/Context';
 import Indicator from '../../styles/ActivityIndicator';
-import { strings } from '../../Localization/Localization';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {strings} from '../../Localization/Localization';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 // import { KeyboardAwareView } from 'react-native-keyboard-aware-view'
-
-
 
 export function Registration(props) {
   const PopUp = msg =>
@@ -32,7 +32,7 @@ export function Registration(props) {
       },
     ]);
 
-  const { setToken } = useContext(GlobalContext);
+  const {setToken} = useContext(GlobalContext);
 
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
@@ -90,100 +90,87 @@ export function Registration(props) {
     }
   };
 
-  const keyboardVerticalOffset = Platform.OS === 'android' ? 0 : 0
+  const keyboardVerticalOffset = Platform.OS === 'android' ? 0 : 0;
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{flex: 1}}>
       {loading ? (
         <Indicator />
-      ) : (<View>
-
-        <View style={styles.appBar}>
-          <TouchableOpacity onPress={() => props.navigation?.goBack()}>
-            <View style={styles.arrowBackStyle}>
-              <ArrowBack />
-            </View>
-          </TouchableOpacity>
-          <View style={styles.nameContainerStyle}>
-            <Text style={styles.nameTextStyle} numberOfLines={1}>
-              {strings.registration}
-            </Text>
-          </View>
-        </View>
-        <ScrollView >
-          <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
-            <View style={styles.formContainer}>
-              <TextInput
-                onChangeText={text => setFirstName(text)}
-                style={styles.textInput}
-                placeholder={strings.firstName}></TextInput>
-              <TextInput
-                onChangeText={text => setLastName(text)}
-                style={styles.textInput}
-                placeholder={strings.lastName}></TextInput>
-              <TextInput
-                onChangeText={text => setUsername(text)}
-                style={styles.textInput}
-                placeholder={strings.username}></TextInput>
-              <TextInput
-                onChangeText={text => setPassword(text)}
-                style={styles.textInput}
-                placeholder={strings.password}></TextInput>
-              <TextInput
-                onChangeText={text => setConfirmPassword(text)}
-                style={styles.textInput}
-                placeholder={strings.confirmPassword}></TextInput>
-
-              <TextInput
-
-                style={styles.textInput}
-                placeholder={strings.confirmPassword}></TextInput>
-
-              <TextInput
-
-                style={styles.textInput}
-                placeholder={strings.confirmPassword}></TextInput>
-              <TextInput
-
-                style={styles.textInput}
-                placeholder={strings.confirmPassword}></TextInput>
-              <TextInput
-
-                style={styles.textInput}
-                placeholder={strings.confirmPassword}></TextInput>
-              <TextInput
-
-                style={styles.textInput}
-                placeholder={strings.confirmPassword}></TextInput>
-              <TextInput
-
-                style={styles.textInput}
-                placeholder={strings.confirmPassword}></TextInput>
-              <TextInput
-
-                style={styles.textInput}
-                placeholder={strings.confirmPassword}></TextInput>
-              <TextInput
-
-
-                style={styles.textInput}
-                placeholder={'aslkmxlkasmxlkasxml'}></TextInput>
-
-
-
-
-            </View>
-
-            <TouchableOpacity onPress={authReg}>
-              <View style={styles.pressContainer}>
-                <Text style={styles.textPress}>{strings.registration}</Text>
+      ) : (
+        <View>
+          <View style={styles.appBar}>
+            <TouchableOpacity onPress={() => props.navigation?.goBack()}>
+              <View style={styles.arrowBackStyle}>
+                <ArrowBack />
               </View>
             </TouchableOpacity>
+            <View style={styles.nameContainerStyle}>
+              <Text style={styles.nameTextStyle} numberOfLines={1}>
+                {strings.registration}
+              </Text>
+            </View>
+          </View>
+          <ScrollView>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              style={{flex: 1}}>
+              <View style={styles.formContainer}>
+                <TextInput
+                  onChangeText={text => setFirstName(text)}
+                  style={styles.textInput}
+                  placeholder={strings.firstName}></TextInput>
+                <TextInput
+                  onChangeText={text => setLastName(text)}
+                  style={styles.textInput}
+                  placeholder={strings.lastName}></TextInput>
+                <TextInput
+                  onChangeText={text => setUsername(text)}
+                  style={styles.textInput}
+                  placeholder={strings.username}></TextInput>
+                <TextInput
+                  onChangeText={text => setPassword(text)}
+                  style={styles.textInput}
+                  placeholder={strings.password}></TextInput>
+                <TextInput
+                  onChangeText={text => setConfirmPassword(text)}
+                  style={styles.textInput}
+                  placeholder={strings.confirmPassword}></TextInput>
 
-          </KeyboardAvoidingView>
+                {/* <TextInput
+                  style={styles.textInput}
+                  placeholder={strings.confirmPassword}></TextInput>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={strings.confirmPassword}></TextInput>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={strings.confirmPassword}></TextInput> */}
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={strings.confirmPassword}></TextInput>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={strings.confirmPassword}></TextInput>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={strings.confirmPassword}></TextInput>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={strings.confirmPassword}></TextInput>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={'ENDDDDD'}></TextInput>
 
-        </ScrollView>
-      </View>
+              </View>
+
+              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.pressContainer}>
+                  <Text style={styles.textPress}>{strings.registration}</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+          </ScrollView>
+        </View>
       )}
     </SafeAreaView>
   );
