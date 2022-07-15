@@ -16,9 +16,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GlobalContext} from '../../context/Context';
 import Restart from 'react-native-restart';
 import Indicator from '../../styles/ActivityIndicator';
-import  { strings }  from './../../Localization/Localization'
-
-
+import {strings} from './../../Localization/Localization';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export function Auth(props) {
   const PopUp = msg =>
@@ -72,7 +71,7 @@ export function Auth(props) {
       {loading ? (
         <Indicator />
       ) : (
-        <View>
+        <View style={{flex: 1}}>
           <View style={styles.appBar}>
             <TouchableOpacity onPress={() => props.navigation?.goBack()}>
               <View style={styles.arrowBackStyle}>
@@ -81,41 +80,35 @@ export function Auth(props) {
             </TouchableOpacity>
             <View style={styles.nameContainerStyle}>
               <Text style={styles.nameTextStyle} numberOfLines={1}>
-              {strings.auth}
+                {strings.auth}
               </Text>
             </View>
           </View>
-          <ScrollView>
-          <View style={styles.formContainer}>
-            <TextInput
-              onChangeText={setusername}
-              style={styles.textInput}
-              placeholder={strings.username}></TextInput>
-            <TextInput
-              onChangeText={setPassword}
-              style={styles.textInput}
-              placeholder={strings.password}
-              
-              ></TextInput>
-          </View>
-
-          <TouchableOpacity onPress={authFunc}>
-            <View style={styles.pressContainer}>
-              <Text style={styles.textPress}>{strings.auth}</Text>
+          <KeyboardAwareScrollView>
+            <View style={styles.formContainer}>
+              <TextInput
+                onChangeText={setusername}
+                style={styles.textInput}
+                placeholder={strings.username}></TextInput>
+              <TextInput
+                onChangeText={setPassword}
+                style={styles.textInput}
+                placeholder={strings.password}></TextInput>
             </View>
-          </TouchableOpacity>
 
+            <TouchableOpacity onPress={authFunc}>
+              <View style={styles.pressContainer}>
+                <Text style={styles.textPress}>{strings.auth}</Text>
+              </View>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate('Registration')}>
-            <View style={styles.pressContainer2}>
-              <Text style={styles.textPress2}>{strings.ifNUllAcc}</Text>
-            </View>
-          </TouchableOpacity>
-
-          
-
-        </ScrollView>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate('Registration')}>
+              <View style={styles.pressContainer2}>
+                <Text style={styles.textPress2}>{strings.ifNUllAcc}</Text>
+              </View>
+            </TouchableOpacity>
+          </KeyboardAwareScrollView>
         </View>
       )}
     </SafeAreaView>

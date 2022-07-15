@@ -1,4 +1,10 @@
-import {View, FlatList, TouchableOpacity, Text} from 'react-native';
+import {
+  View,
+  FlatList,
+  TouchableOpacity,
+  Text,
+  RefreshControl,
+} from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 
 import {getProject} from '../../func/getApi';
@@ -20,16 +26,6 @@ export function UserScreen(props) {
     getProject(setData, setLoading, api);
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Actions text={strings.user} />
-
-      {chatList(loading, data, props)}
-    </View>
-  );
-}
-
-function chatList(loading, data, props) {
   const renderProject = useCallback(
     ({item}) => (
       <View style={styles.shell}>
@@ -43,24 +39,44 @@ function chatList(loading, data, props) {
     [],
   );
 
+  const onRefresh = () => {
+    getProject(setData, setLoading, api);
+  };
+
+  function chatList() {
+    return (
+      <View style={styles.listContainer}>
+        {loading ? (
+          <Indicator />
+        ) : (
+          <FlatList
+            ListEmptyComponent={
+              <View style={{alignItems: 'center'}}>
+                <Text style={{fontSize: 24}}>Empty</Text>
+              </View>
+            }
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={onRefresh}
+              />
+            }
+            data={data}
+            maxToRenderPerBatch={15}
+            initialNumToRender={15}
+            j
+            renderItem={renderProject}
+            contentContainerStyle={styles.contentContainerStyle}
+          />
+        )}
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.listContainer}>
-      {loading ? (
-        <Indicator />
-      ) : (
-        <FlatList
-          ListEmptyComponent={
-            <View style={{alignItems: 'center'}}>
-              <Text style={{fontSize: 24}}>Empty</Text>
-            </View>
-          }
-          data={data}
-          maxToRenderPerBatch={15}
-          initialNumToRender={15}
-          renderItem={renderProject}
-          contentContainerStyle={styles.contentContainerStyle}
-        />
-      )}
+    <View style={styles.container}>
+      <Actions text={strings.user} />
+      {chatList()}
     </View>
   );
 }

@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    marginBottom: 30,
+    marginBottom: 40,
     marginHorizontal: 16,
     marginTop: 30,
     borderRadius: 20,
@@ -55,11 +55,11 @@ export const styles = StyleSheet.create({
     height: 40,
     borderRadius: 10,
     backgroundColor: '#f7f7f7',
-
   },
   pressContainer: {
     backgroundColor: 'white',
     paddingVertical: 20,
+
     marginHorizontal: 16,
     borderRadius: 20,
     backgroundColor: Colors.mainPurple,
@@ -86,5 +86,5 @@ export const styles = StyleSheet.create({
   },
   marginKeyboard: {
     marginBottom: '30',
-  }
+  },
 });

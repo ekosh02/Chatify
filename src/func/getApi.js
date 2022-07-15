@@ -1,22 +1,19 @@
 import axios from 'axios';
-import { useState } from 'react';
+import {useState} from 'react';
 
 export function getProject(setData, setLoading, api) {
-  setLoading(true)
+  setLoading(true);
 
-  return (
-    axios
+  console.log('RENDER GET PROJECT');
+
+  return axios
     .get(api)
     .then(result => {
-      console.log('api', api, ':', result.data)
-      setData(result?.data)
+      console.log('api', api, ':', result.data);
+      setData(result?.data);
       setLoading(false);
     })
     .catch(error => {
       console.log('Error at', api, ':', error);
-    })
-  ) 
-   
+    });
 }
-
-

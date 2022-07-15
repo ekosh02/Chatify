@@ -20,7 +20,7 @@ import {GlobalContext} from '../../context/Context';
 import Indicator from '../../styles/ActivityIndicator';
 import {strings} from '../../Localization/Localization';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 // import { KeyboardAwareView } from 'react-native-keyboard-aware-view'
 
 export function Registration(props) {
@@ -97,7 +97,7 @@ export function Registration(props) {
       {loading ? (
         <Indicator />
       ) : (
-        <View>
+        <View style={{flex: 1}}>
           <View style={styles.appBar}>
             <TouchableOpacity onPress={() => props.navigation?.goBack()}>
               <View style={styles.arrowBackStyle}>
@@ -110,66 +110,63 @@ export function Registration(props) {
               </Text>
             </View>
           </View>
-          <ScrollView>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-              style={{flex: 1}}>
-              <View style={styles.formContainer}>
-                <TextInput
-                  onChangeText={text => setFirstName(text)}
-                  style={styles.textInput}
-                  placeholder={strings.firstName}></TextInput>
-                <TextInput
-                  onChangeText={text => setLastName(text)}
-                  style={styles.textInput}
-                  placeholder={strings.lastName}></TextInput>
-                <TextInput
-                  onChangeText={text => setUsername(text)}
-                  style={styles.textInput}
-                  placeholder={strings.username}></TextInput>
-                <TextInput
-                  onChangeText={text => setPassword(text)}
-                  style={styles.textInput}
-                  placeholder={strings.password}></TextInput>
-                <TextInput
-                  onChangeText={text => setConfirmPassword(text)}
-                  style={styles.textInput}
-                  placeholder={strings.confirmPassword}></TextInput>
 
-                {/* <TextInput
-                  style={styles.textInput}
-                  placeholder={strings.confirmPassword}></TextInput>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={strings.confirmPassword}></TextInput>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={strings.confirmPassword}></TextInput> */}
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={strings.confirmPassword}></TextInput>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={strings.confirmPassword}></TextInput>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={strings.confirmPassword}></TextInput>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={strings.confirmPassword}></TextInput>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={'ENDDDDD'}></TextInput>
+          <KeyboardAwareScrollView>
+            <View style={styles.formContainer}>
+              <TextInput
+                onChangeText={text => setFirstName(text)}
+                style={styles.textInput}
+                placeholder={strings.firstName}></TextInput>
+              <TextInput
+                onChangeText={text => setLastName(text)}
+                style={styles.textInput}
+                placeholder={strings.lastName}></TextInput>
+              <TextInput
+                onChangeText={text => setUsername(text)}
+                style={styles.textInput}
+                placeholder={strings.username}></TextInput>
+              <TextInput
+                onChangeText={text => setPassword(text)}
+                style={styles.textInput}
+                placeholder={strings.password}></TextInput>
+              <TextInput
+                onChangeText={text => setConfirmPassword(text)}
+                style={styles.textInput}
+                placeholder={strings.confirmPassword}></TextInput>
 
+              {/* <TextInput
+                style={styles.textInput}
+                placeholder={strings.confirmPassword}></TextInput>
+              <TextInput
+                style={styles.textInput}
+                placeholder={strings.confirmPassword}></TextInput>
+              <TextInput
+                style={styles.textInput}
+                placeholder={strings.confirmPassword}></TextInput>
+              <TextInput
+                style={styles.textInput}
+                placeholder={strings.confirmPassword}></TextInput>
+              <TextInput
+                style={styles.textInput}
+                placeholder={strings.confirmPassword}></TextInput>
+              <TextInput
+                style={styles.textInput}
+                placeholder={strings.confirmPassword}></TextInput>
+              <TextInput
+                style={styles.textInput}
+                placeholder={strings.confirmPassword}></TextInput>
+              <TextInput
+                style={styles.textInput}
+                placeholder={'ENDDDDD'}></TextInput> */}
+            </View>
+            
+            <TouchableWithoutFeedback onPress={authReg}>
+              <View style={styles.pressContainer}>
+                <Text style={styles.textPress}>{strings.registration}</Text>
               </View>
+            </TouchableWithoutFeedback>
 
-              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.pressContainer}>
-                  <Text style={styles.textPress}>{strings.registration}</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </KeyboardAvoidingView>
-          </ScrollView>
+          </KeyboardAwareScrollView>
         </View>
       )}
     </SafeAreaView>
