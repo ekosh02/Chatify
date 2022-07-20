@@ -9,10 +9,12 @@ import {styles} from './../../styles/AppBarAndList';
 import {Indicator} from './../../styles/ActivityIndicator';
 
 import {strings} from '../../Localization/Localization';
+import axios from 'axios';
 
 export function PostScreen(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   const api = 'posts';
 
@@ -20,23 +22,26 @@ export function PostScreen(props) {
     getProject(setData, setLoading, api);
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Actions text={strings.post} />
+  const onRefresh = () => {
+    setRefreshing(true);
+    console.log('onRefresh');
+    axios
+      .get(api)
+      .then(result => {
+        console.log('api', api, ':', result.data);
+        setData(result?.data);
+      })
+      .catch(error => {
+        console.log('Error at', api, ':', error);
+      });
+    setRefreshing(false);
+  };
 
-      {chatList(loading, data, props)}
-    </View>
-  );
-}
-
-function chatList(loading, data, props) {
   const renderProject = useCallback(
     ({item}) => (
       <View style={styles.shell}>
         <TouchableOpacity
-          onPress={() =>
-            props.navigation.navigate('PostScreenDetails', item)
-          }>
+          onPress={() => props.navigation.navigate('PostScreenDetails', item)}>
           <Text style={styles.nameTextStyle} numberOfLines={1}>
             {item.title}
           </Text>
@@ -48,20 +53,36 @@ function chatList(loading, data, props) {
     ),
     [],
   );
+  function chatList() {
+    return (
+      <View style={styles.listContainer}>
+        {loading ? (
+          <Indicator />
+        ) : (
+          <FlatList
+            ListEmptyComponent={
+              <View style={{alignItems: 'center'}}>
+                <Text style={{fontSize: 24}}>Empty</Text>
+              </View>
+            }
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            data={data}
+            maxToRenderPerBatch={15}
+            initialNumToRender={15}
+            renderItem={renderProject}
+            contentContainerStyle={styles.contentContainerStyle}
+          />
+        )}
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.listContainer}>
-      {loading ? (
-        <Indicator />
-      ) : (
-        <FlatList
-          maxToRenderPerBatch={15}
-          initialNumToRender={15}
-          data={data}
-          renderItem={renderProject}
-          contentContainerStyle={styles.contentContainerStyle}
-        />
-      )}
+    <View style={styles.container}>
+      <Actions text={strings.post} />
+
+      {chatList()}
     </View>
   );
 }

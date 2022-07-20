@@ -9,10 +9,12 @@ import Actions from '../../styles/Actions';
 import {Indicator} from '../../styles/ActivityIndicator';
 
 import {strings} from '../../Localization/Localization';
+import axios from 'axios';
 
 export function ContactScreen(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   const api = 'albums';
 
@@ -20,16 +22,23 @@ export function ContactScreen(props) {
     getProject(setData, setLoading, api);
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Actions text={strings.albums} />
-      {albumList(loading, data, props)}
-    </View>
-  );
-}
+  const onRefresh = () => {
+    setRefreshing(true);
+    console.log('onRefresh');
+    axios
+      .get(api)
+      .then(result => {
+        console.log('api', api, ':', result.data);
+        setData(result?.data);
+      })
+      .catch(error => {
+        console.log('Error at', api, ':', error);
+      });
+    setRefreshing(false);
+  };
 
-function albumList(loading, data, props) {
-  const renderProject = useCallback(
+
+   const renderProject = useCallback(
     ({item}) => (
       <View style={styles.shell}>
         <TouchableOpacity
@@ -43,20 +52,39 @@ function albumList(loading, data, props) {
     [],
   );
 
-  return (
-    <View style={styles.listContainer}>
+  function albumList() {
+ 
+    return (
+      <View style={styles.listContainer}>
       {loading ? (
         <Indicator />
       ) : (
         <FlatList
+          ListEmptyComponent={
+            <View style={{alignItems: 'center'}}>
+              <Text style={{fontSize: 24}}>Empty</Text>
+            </View>
+          }
+          refreshing={refreshing}
+          onRefresh={onRefresh}
           data={data}
-          bounces={true}
           maxToRenderPerBatch={15}
-          initialNumToRender={20}
+          initialNumToRender={15}
           renderItem={renderProject}
           contentContainerStyle={styles.contentContainerStyle}
         />
       )}
     </View>
+    );
+  }
+
+
+  return (
+    <View style={styles.container}>
+      <Actions text={strings.albums} />
+      {albumList(loading, data, props)}
+    </View>
   );
 }
+
+

@@ -7,7 +7,6 @@ import {Colors} from '../../styles/colors';
 import {DetailsAppBar} from '../../styles/DetailsAppBar';
 
 export function UserScreenDetails(props) {
-  
   const item = props.route.params;
 
   return (
@@ -80,20 +79,23 @@ export const styles = StyleSheet.create({
   accountContainerStyle: {
     marginHorizontal: 16,
     marginTop: 20,
-    marginBottom: 10,
+    marginBottom: 12,
   },
   accountTextStyle: {
     fontSize: 18,
     color: Colors.mainPurple,
     marginVertical: 5,
+    marginBottom: 12,
   },
   childAccountContainerStyle: {
     marginHorizontal: 16,
   },
   chindAccountTextStyle: {
+    marginHorizontal: 16,
     fontSize: 24,
-    marginVertical: 3,
     fontWeight: '400',
+    alignItems: 'center',
+    justifyContent: 'center',
     color: Colors.blackText,
   },
   line: {
@@ -108,5 +110,31 @@ export const styles = StyleSheet.create({
   bottomTextStyle: {
     color: Colors.darkGray,
     fontSize: 16,
+  },
+  rowView: {
+    height: 48,
+    backgroundColor: '#e1e1e3',
+    borderRadius: 12,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginBottom: 8,
+  },
+
+  rowViewActivity: {
+    height: 48,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#7a54e3',
+    borderRadius: 12,
+    marginBottom: 8,
+  },
+
+  lanPressed: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#7a54e3',
+    borderColor: 'gray',
+    borderWidth: 2,
   },
 });

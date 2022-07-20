@@ -16,15 +16,34 @@ import {Indicator} from '../../styles/ActivityIndicator';
 
 import {strings} from '../../Localization/Localization';
 
+import axios from 'axios';
+
 export function UserScreen(props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   const api = 'users';
 
   useEffect(() => {
     getProject(setData, setLoading, api);
   }, []);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    console.log('onRefresh');
+    axios
+      .get(api)
+      .then(result => {
+        console.log('api', api, ':', result.data);
+        setData(result?.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log('Error at', api, ':', error);
+      });
+    setRefreshing(false);
+  };
 
   const renderProject = useCallback(
     ({item}) => (
@@ -39,10 +58,6 @@ export function UserScreen(props) {
     [],
   );
 
-  const onRefresh = () => {
-    getProject(setData, setLoading, api);
-  };
-
   function chatList() {
     return (
       <View style={styles.listContainer}>
@@ -55,16 +70,11 @@ export function UserScreen(props) {
                 <Text style={{fontSize: 24}}>Empty</Text>
               </View>
             }
-            refreshControl={
-              <RefreshControl
-                refreshing={loading}
-                onRefresh={onRefresh}
-              />
-            }
+            refreshing={refreshing}
+            onRefresh={onRefresh}
             data={data}
             maxToRenderPerBatch={15}
             initialNumToRender={15}
-            j
             renderItem={renderProject}
             contentContainerStyle={styles.contentContainerStyle}
           />
@@ -75,7 +85,7 @@ export function UserScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Actions text={strings.user} />
+      <Actions text={strings.user}/>
       {chatList()}
     </View>
   );
