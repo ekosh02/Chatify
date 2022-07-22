@@ -16,7 +16,7 @@ import {AlbumScreenDetails} from '../screens/AlbumsScreens/AlbumScreenDetails';
 const Stack = createStackNavigator();
 
 const stacks = [
-  {name: 'SplashScreen', component: SplashScreen},
+  {name: 'SplashScreen', component: SplashScreen,},
   {name: 'BottomBar', component: BottomBar},
   {name: 'Search', component: Search},
   {name: 'SettingScreen', component: SettingScreen},

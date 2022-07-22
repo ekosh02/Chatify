@@ -1,12 +1,59 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ImageEditor,
+  Dimensions,
+  SafeAreaView,
+} from 'react-native';
+import {Indicator} from './../styles/ActivityIndicator';
+import {getProject} from './../func/getApi';
+
+const {height, width} = Dimensions.get('screen');
+import {styles} from '../styles/AppBarAndList';
 
 export function Com3(props) {
+  const api = 'albums';
+
+  useEffect(() => {
+    getProject(setData, setLoading, api);
+  }, []);
+
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+
+  const renderProject = useCallback(
+    ({item}) => (
+      <View style={styles.shell}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate('AlbumScreenDetails', item)}>
+          <Text style={styles.nameTextStyle}>{item.title}</Text>
+        </TouchableOpacity>
+      </View>
+    ),
+    [],
+  );
+
   return (
-    <View>
-      <Text>Com3</Text>
-    </View>
+    <SafeAreaView style={{height: height}}>
+      {loading ? (
+        <Indicator />
+      ) : (
+        <FlatList
+          ListEmptyComponent={
+            <View style={{alignItems: 'center'}}>
+              <Text style={{fontSize: 24}}>Empty</Text>
+            </View>
+          }
+          data={data}
+          maxToRenderPerBatch={15}
+          initialNumToRender={15}
+          renderItem={renderProject}
+          contentContainerStyle={styles.contentContainerStyle}
+        />
+      )}
+    </SafeAreaView>
   );
 }
-
-

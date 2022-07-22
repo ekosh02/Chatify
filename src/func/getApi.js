@@ -4,8 +4,6 @@ import {useState} from 'react';
 export function getProject(setData, setLoading, api) {
   setLoading(true);
 
-  console.log('RENDER GET PROJECT');
-
   return axios
     .get(api)
     .then(result => {

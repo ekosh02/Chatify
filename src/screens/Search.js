@@ -27,7 +27,6 @@ let stacks = [
 ];
 
 export function Search(props) {
-  console.log('height', height);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.containerInput}>
@@ -45,7 +44,7 @@ export function Search(props) {
       <View style={{ height: height}}>
         <Tab.Navigator
           screenOptions={{
-            tabBarStyle: {backgroundColor: 'red', height: 48},
+            tabBarStyle: {height: 48},
           }}
           initialRouteName="com1">
           {stacks.map((stack, key) => (
@@ -76,7 +75,6 @@ const styles = StyleSheet.create({
   containerInput: {
     height: 54,
     width: width,
-    backgroundColor: 'gray',
   },
   textInputStyle: {
     paddingVertical: 6,
@@ -85,7 +83,7 @@ const styles = StyleSheet.create({
 
   arrowBackStyle: {
     left: 13,
-    top: '23%',
+    top: '31%',
     justifyContent: 'center',
   },
 });

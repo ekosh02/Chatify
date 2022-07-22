@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {getProject} from '../../func/getApi';
 import Indicator from '../../styles/ActivityIndicator';
+import { styles } from '../../styles/AppBarAndList';
 import {DetailsAppBar} from '../../styles/DetailsAppBar';
 
 const {width} = Dimensions.get('screen');
@@ -81,6 +82,8 @@ function PhotoList(props) {
           renderItem={renderProject}
           maxToRenderPerBatch={9}
           initialNumToRender={20}
+          contentContainerStyle={{paddingBottom: 170}}
+          
         />
       )}
     </View>

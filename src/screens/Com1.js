@@ -12,6 +12,7 @@ import {Indicator} from './../styles/ActivityIndicator';
 import {getProject} from './../func/getApi';
 
 const {height, width} = Dimensions.get('screen');
+import {styles} from '../styles/AppBarAndList';
 
 export function Com1(props) {
   const api = 'users';
@@ -22,21 +23,14 @@ export function Com1(props) {
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  
 
   const renderProject = useCallback(
     ({item}) => (
-      <View>
+      <View style={styles.shell}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('UserScreenDetails', item)}>
-          <Text>{item.id}</Text>
-          <Text>{item.name}</Text>
-          <Text>{item.email}</Text>
-          <Text>{item.username}</Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text>||||||||||||||||||||||||||||</Text>
+          <Text style={styles.nameTextStyle}>{item.name}</Text>
         </TouchableOpacity>
       </View>
     ),
@@ -44,7 +38,7 @@ export function Com1(props) {
   );
 
   return (
-    <SafeAreaView style={{backgroundColor: 'blue', height: height}}>
+    <SafeAreaView style={{height: height}}>
       {loading ? (
         <Indicator />
       ) : (
@@ -58,6 +52,7 @@ export function Com1(props) {
           maxToRenderPerBatch={15}
           initialNumToRender={15}
           renderItem={renderProject}
+          contentContainerStyle={styles.contentContainerStyle}
         />
       )}
     </SafeAreaView>
