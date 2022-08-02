@@ -1,4 +1,4 @@
-package com.chatmobileconcept.newarchitecture.modules;
+package com.eldosturapbaev.chatify.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

@@ -1,4 +1,4 @@
-package com.chatmobileconcept.newarchitecture.components;
+package com.eldosturapbaev.chatify.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

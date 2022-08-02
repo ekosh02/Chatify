@@ -1,4 +1,4 @@
-package com.chatmobileconcept.newarchitecture;
+package com.eldosturapbaev.chatify.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.chatmobileconcept.BuildConfig;
-import com.chatmobileconcept.newarchitecture.components.MainComponentsRegistry;
-import com.chatmobileconcept.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.eldosturapbaev.chatify.BuildConfig;
+import com.eldosturapbaev.chatify.newarchitecture.components.MainComponentsRegistry;
+import com.eldosturapbaev.chatify.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
