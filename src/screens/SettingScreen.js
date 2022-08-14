@@ -1,24 +1,26 @@
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {Colors} from '../styles/colors';
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { Text, View, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { Colors } from '../styles/colors';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ArrowBack from './../../icon/arrowBack.svg';
 
-import {styles} from '../../src/screens/userScreens/UserScreenDetails';
+import { styles } from '../../src/screens/userScreens/UserScreenDetails';
 
 import Restart from 'react-native-restart';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {strings} from '../Localization/Localization';
+import { strings } from '../Localization/Localization';
 
 import CheckIcon from './../../icon/check.svg';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export function SettingScreen(props) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
+  var [isPress, setIsPress] = useState(false);
+
   const Selected = async value => {
-   await AsyncStorage.setItem('lang', value);
+    await AsyncStorage.setItem('lang', value);
     Restart.Restart();
   };
 
@@ -39,9 +41,28 @@ export function SettingScreen(props) {
   };
 
 
+
+  var touchProps = {
+    activeOpacity: 1,
+    underlayColor: '#7a54e3',
+    style: styles.rowView,
+    onHideUnderlay: () => setIsPress(false),
+    onShowUnderlay: () => setIsPress(true),
+    onPress: () => console.log('touchProps'),
+  };
+
+
+  const selectStack = [
+    { text: 'Select 1' },
+    { text: 'Select 2' },
+    { text: 'Select 3' },
+    { text: 'Select 4' },
+  ]
+
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{marginTop: 20, marginLeft: 16}}>
+      <View style={{ marginTop: 20, marginLeft: 16 }}>
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <ArrowBack />
         </TouchableOpacity>
@@ -74,6 +95,20 @@ export function SettingScreen(props) {
               </Text>
             </View>
           </TouchableOpacity>
+        </View>
+   
+        <View style={styles.accountContainerStyle}>
+
+          <Text style={styles.accountTextStyle}>Select</Text>
+
+          {selectStack.map((stack, key) => (
+            <TouchableHighlight {...touchProps}>
+              <Text style={styles.chindAccountTextStyle}>
+                {stack.text}
+              </Text>
+            </TouchableHighlight>
+          ))}
+
         </View>
       </ScrollView>
     </SafeAreaView>
