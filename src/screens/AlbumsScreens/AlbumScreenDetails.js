@@ -82,7 +82,7 @@ function PhotoList(props) {
           renderItem={renderProject}
           maxToRenderPerBatch={9}
           initialNumToRender={20}
-          contentContainerStyle={{paddingBottom: 170}}
+          contentContainerStyle={{paddingBottom: 210}}
           
         />
       )}

@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     paddingTop: 20,
-    paddingBottom: '30%',
+    // paddingBottom: '30%',
   },
   shell: {
     paddingHorizontal: 20,
