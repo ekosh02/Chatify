@@ -37,6 +37,8 @@ export default function App() {
   };
 
 
+  
+
 
   const langOfApp = async () => {
     const lang = await AsyncStorage.getItem('lang');
